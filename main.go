@@ -13,10 +13,10 @@ import (
 	"strings"
 	"time"
 
-	"hiddentrace-cli/internal/crawler/crawler"
-	"hiddentrace-cli/internal/enhancedParamExtractor"
-	"hiddentrace-cli/internal/paramsmapper"
-	"hiddentrace-cli/internal/scanner"
+	"github.com/cybertron10/HiddenTraceCLI/internal/crawler/crawler"
+	"github.com/cybertron10/HiddenTraceCLI/internal/enhancedParamExtractor"
+	"github.com/cybertron10/HiddenTraceCLI/internal/paramsmapper"
+	"github.com/cybertron10/HiddenTraceCLI/internal/scanner"
 )
 
 func main() {

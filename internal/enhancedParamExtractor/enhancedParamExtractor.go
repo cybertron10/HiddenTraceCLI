@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	"hiddentrace-cli/internal/crawler/crawler"
+	"github.com/cybertron10/HiddenTraceCLI/internal/crawler/crawler"
 )
 
 // ExtractAllParameters extracts parameters from all sources

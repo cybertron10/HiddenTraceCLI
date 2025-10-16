@@ -1,4 +1,4 @@
-module hiddentrace-cli
+module github.com/cybertron10/HiddenTraceCLI
 
 go 1.22
 

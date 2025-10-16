@@ -10,7 +10,7 @@ import (
 	"sync"
 	"time"
 
-    "hiddentrace-cli/internal/parser"
+    "github.com/cybertron10/HiddenTraceCLI/internal/parser"
 )
 
 // Crawler represents an intelligent web crawler

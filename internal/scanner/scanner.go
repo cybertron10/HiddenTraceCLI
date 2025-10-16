@@ -17,8 +17,8 @@ import (
 	"sync"
 	"time"
 
-    "hiddentrace-cli/internal/headless"
-    "hiddentrace-cli/internal/parser"
+    "github.com/cybertron10/HiddenTraceCLI/internal/headless"
+    "github.com/cybertron10/HiddenTraceCLI/internal/parser"
 )
 
 // Scanner represents the main XSS scanner
