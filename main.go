@@ -193,6 +193,17 @@ func main() {
 	log.Printf("Generated %d hidden URLs with discovered parameters", len(hiddenURLs))
 	allURLs = append(allURLs, hiddenURLs...)
 
+	// Check for and remove duplicates
+	originalCount := len(allURLs)
+	allURLs = removeDuplicates(allURLs)
+	duplicateCount := originalCount - len(allURLs)
+	
+	if duplicateCount > 0 {
+		log.Printf("Found %d duplicate URLs, removed them. Final unique URLs: %d", duplicateCount, len(allURLs))
+	} else {
+		log.Printf("No duplicate URLs found. Total unique URLs: %d", len(allURLs))
+	}
+
 	// Skip saving URLs - only XSS vulnerabilities needed
 
 	// 4) XSS Scanning
