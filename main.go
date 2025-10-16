@@ -88,7 +88,6 @@ func main() {
 
 	// 1) Crawl
 	log.Println("Phase 1: Web crawling...")
-	c := crawler.NewCrawler()
 	
 	// Crawl each target URL and combine results
 	var allCrawledURLs []string
@@ -99,6 +98,8 @@ func main() {
 	
 	for i, targetURL := range targetURLs {
 		log.Printf("Crawling target %d/%d: %s", i+1, len(targetURLs), targetURL)
+		// Create a new crawler instance for each URL to avoid channel conflicts
+		c := crawler.NewCrawler()
 		crawl, err := c.CrawlDomain(targetURL, map[string]string{})
 		if err != nil {
 			log.Printf("Warning: Failed to crawl %s: %v", targetURL, err)
