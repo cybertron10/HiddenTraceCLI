@@ -146,32 +146,19 @@ func main() {
 	wordlistParams := paramsmapper.LoadWordlist(*wordlist)
 	log.Printf("Loaded %d parameters from wordlist", len(wordlistParams))
 
-	// Process each target domain (like the web app does) instead of each individual URL
+	// Process all URLs together (fuzz every endpoint for comprehensive coverage)
 	var allResults paramsmapper.Results
 	allResults.Params = []string{}
 	allResults.FormParams = []string{}
 	allResults.TotalRequests = 0
 
-	// Get unique base domains from target URLs
-	baseDomains := make(map[string]bool)
-	for _, targetURL := range targetURLs {
-		parsedURL, err := url.Parse(targetURL)
-		if err != nil {
-			continue
-		}
-		baseDomain := parsedURL.Scheme + "://" + parsedURL.Host
-		baseDomains[baseDomain] = true
-	}
-
-	log.Printf("Fuzzing %d base domains for hidden parameters...", len(baseDomains))
+	log.Printf("Fuzzing %d URLs for hidden parameters...", len(crawl.URLs))
 	
-	domainIndex := 0
-	for baseDomain := range baseDomains {
-		domainIndex++
-		log.Printf("Processing domain %d/%d: %s", domainIndex, len(baseDomains), baseDomain)
+	for i, targetURL := range crawl.URLs {
+		log.Printf("Processing URL %d/%d: %s", i+1, len(crawl.URLs), targetURL)
 		
 		request := paramsmapper.Request{
-			URL:     baseDomain,
+			URL:     targetURL,
 			Method:  "GET",
 			Timeout: 10,
 		}
@@ -179,7 +166,7 @@ func main() {
 		results := paramsmapper.DiscoverParamsWithProgress(request, wordlistParams, 500, func(progress paramsmapper.ProgressInfo) {
 			// Only log significant progress updates
 			if progress.Percentage%25 == 0 {
-				log.Printf("Domain %d/%d - %s (discovered: %d)", domainIndex, len(baseDomains), progress.Message, progress.Discovered)
+				log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(crawl.URLs), progress.Message, progress.Discovered)
 			}
 		})
 		
