@@ -20,7 +20,13 @@ A powerful command-line tool that combines web crawling, parameter extraction, p
 - Go 1.22 or higher
 - Playwright browsers (installed automatically on first run)
 
-### Build from Source
+### Option 1: Direct Install (Recommended)
+
+```bash
+go install github.com/cybertron10/HiddenTraceCLI@latest
+```
+
+### Option 2: Build from Source
 
 ```bash
 git clone https://github.com/cybertron10/HiddenTraceCLI.git
@@ -31,7 +37,13 @@ go build -o hiddentrace-cli.exe
 
 ## Usage
 
+After installation, you can run the tool directly:
+
 ```bash
+# If installed via go install
+hiddentrace-cli -url https://example.com [options]
+
+# If built from source
 ./hiddentrace-cli.exe -url https://example.com [options]
 ```
 
@@ -50,26 +62,26 @@ go build -o hiddentrace-cli.exe
 ### Examples
 
 ```bash
-# Basic scan
-./hiddentrace-cli.exe -url https://example.com
+# Basic scan (after go install)
+hiddentrace-cli -url https://example.com
 
 # Scan multiple URLs from file
-./hiddentrace-cli.exe -file urls.txt
+hiddentrace-cli -file urls.txt
 
 # High concurrency scan
-./hiddentrace-cli.exe -url https://example.com -concurrency 10
+hiddentrace-cli -url https://example.com -concurrency 10
 
 # Fast mode scan
-./hiddentrace-cli.exe -url https://example.com -fast-mode
+hiddentrace-cli -url https://example.com -fast-mode
 
 # Custom output directory and wordlist
-./hiddentrace-cli.exe -url https://example.com -output my_results -wordlist custom_wordlist.txt
+hiddentrace-cli -url https://example.com -output my_results -wordlist custom_wordlist.txt
 
 # Scan multiple URLs with custom settings
-./hiddentrace-cli.exe -file urls.txt -output batch_results -concurrency 15
+hiddentrace-cli -file urls.txt -output batch_results -concurrency 15
 
 # Save console output to file
-./hiddentrace-cli.exe -url https://example.com -concurrency 10 > console_output.txt 2>&1
+hiddentrace-cli -url https://example.com -concurrency 10 > console_output.txt 2>&1
 ```
 
 ## How It Works
