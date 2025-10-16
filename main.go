@@ -11,6 +11,7 @@ import (
 	"os"
 	"path/filepath"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/cybertron10/HiddenTraceCLI/internal/crawler/crawler"
@@ -208,13 +209,27 @@ func main() {
 	sem := make(chan struct{}, *concurrency)
 	done := make(chan struct{})
 	count := 0
+	completed := 0
+	var mu sync.Mutex
 
-	for _, u := range allURLs {
+	log.Printf("Starting XSS scan of %d URLs with concurrency %d", len(allURLs), *concurrency)
+
+	for i, u := range allURLs {
 		u := u
+		urlIndex := i + 1
 		sem <- struct{}{}
 		count++
 		go func() {
-			defer func() { <-sem; done <- struct{}{} }()
+			defer func() { 
+				<-sem
+				mu.Lock()
+				completed++
+				log.Printf("XSS scan progress: %d/%d URLs completed", completed, len(allURLs))
+				mu.Unlock()
+				done <- struct{}{} 
+			}()
+			
+			log.Printf("Scanning URL %d/%d: %s", urlIndex, len(allURLs), u)
 			cfg := *scanCfg
 			cfg.URL = u
 			s := scanner.NewScanner(&cfg)
@@ -223,11 +238,14 @@ func main() {
 			defer cancel()
 			result, err := s.Scan(ctx)
 			if err != nil {
-				log.Printf("scan error for %s: %v", u, err)
+				log.Printf("XSS scan error for %s: %v", u, err)
 				return
 			}
 			if result != nil && len(result.Vulnerabilities) > 0 {
+				mu.Lock()
 				vulnerabilities = append(vulnerabilities, result.Vulnerabilities...)
+				log.Printf("Found %d XSS vulnerabilities in %s", len(result.Vulnerabilities), u)
+				mu.Unlock()
 			}
 		}()
 	}
