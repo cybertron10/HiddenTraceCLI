@@ -147,10 +147,7 @@ func main() {
 	log.Printf("Loaded %d parameters from wordlist", len(wordlistParams))
 
 	// Process all URLs together (fuzz every endpoint for comprehensive coverage)
-	var allResults paramsmapper.Results
-	allResults.Params = []string{}
-	allResults.FormParams = []string{}
-	allResults.TotalRequests = 0
+	var allResults []paramsmapper.Results
 
 	log.Printf("Fuzzing %d URLs for hidden parameters...", len(crawl.URLs))
 	
@@ -170,23 +167,32 @@ func main() {
 			}
 		})
 		
-		// Merge results
-		allResults.Params = append(allResults.Params, results.Params...)
-		allResults.FormParams = append(allResults.FormParams, results.FormParams...)
-		allResults.TotalRequests += results.TotalRequests
+		// Store results with URL context
+		allResults = append(allResults, results)
 	}
 
-	// Remove duplicates
-	allResults.Params = removeDuplicates(allResults.Params)
-	allResults.FormParams = removeDuplicates(allResults.FormParams)
+	// Count total parameters discovered
+	totalParams := 0
+	totalFormParams := 0
+	totalRequests := 0
+	
+	for _, result := range allResults {
+		totalParams += len(result.Params)
+		totalFormParams += len(result.FormParams)
+		totalRequests += result.TotalRequests
+	}
 
-	log.Printf("Parameter fuzzing complete: %d unique parameters discovered", len(allResults.Params))
+	log.Printf("Parameter fuzzing complete: %d parameters discovered across all URLs", totalParams)
 
-	// Generate hidden URLs with discovered parameters
-	for _, param := range allResults.Params {
-		for _, baseURL := range crawl.URLs {
-			hiddenURL := generateURLWithParam(baseURL, param)
-			hiddenURLs = append(hiddenURLs, hiddenURL)
+	// Generate hidden URLs - only apply parameters to the specific URLs where they were discovered
+	for _, result := range allResults {
+		// Only process if parameters were discovered for this URL
+		if len(result.Params) > 0 {
+			log.Printf("Applying %d discovered parameters to URL: %s", len(result.Params), result.Request.URL)
+			for _, param := range result.Params {
+				hiddenURL := generateURLWithParam(result.Request.URL, param)
+				hiddenURLs = append(hiddenURLs, hiddenURL)
+			}
 		}
 	}
 
