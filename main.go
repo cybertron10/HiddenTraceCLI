@@ -28,7 +28,7 @@ func main() {
 		fast       = flag.Bool("fast-mode", false, "Fast mode payload set")
 		ultra      = flag.Bool("ultra-fast", false, "Ultra fast mode")
 		timeout     = flag.Duration("timeout", 10*time.Minute, "Scan timeout")
-		outputDir   = flag.String("output", "scan_results", "Output directory for results")
+		outputDir   = flag.String("output", "scan_results", "Output file (.txt) or directory for results")
 		wordlist    = flag.String("wordlist", "wordlist.txt", "Path to parameter wordlist file")
 	)
 	flag.Parse()
@@ -45,9 +45,23 @@ func main() {
 		return
 	}
 
-	// Create output directory
-	if err := os.MkdirAll(*outputDir, 0755); err != nil {
-		log.Fatalf("Failed to create output directory: %v", err)
+	// Determine if output is a file or directory
+	var outputFile string
+	
+	if strings.HasSuffix(*outputDir, ".txt") {
+		// Output is a file path
+		outputFile = *outputDir
+		// Create parent directory if it doesn't exist
+		parentDir := filepath.Dir(outputFile)
+		if err := os.MkdirAll(parentDir, 0755); err != nil {
+			log.Fatalf("Failed to create output directory: %v", err)
+		}
+	} else {
+		// Output is a directory
+		if err := os.MkdirAll(*outputDir, 0755); err != nil {
+			log.Fatalf("Failed to create output directory: %v", err)
+		}
+		outputFile = filepath.Join(*outputDir, "xss_vulnerabilities.txt")
 	}
 
 	// Determine target URLs
@@ -222,14 +236,13 @@ func main() {
 	}
 
 	// Save XSS results
-	xssFile := filepath.Join(*outputDir, "xss_vulnerabilities.txt")
-	if err := saveXSSResults(vulnerabilities, xssFile); err != nil {
+	if err := saveXSSResults(vulnerabilities, outputFile); err != nil {
 		log.Printf("Warning: Failed to save XSS results: %v", err)
 	}
 
 	// Skip generating summary - only XSS vulnerabilities needed
 
-	log.Printf("Scan complete! XSS vulnerabilities saved to: %s", filepath.Join(*outputDir, "xss_vulnerabilities.txt"))
+	log.Printf("Scan complete! XSS vulnerabilities saved to: %s", outputFile)
 	log.Printf("Summary: %d URLs crawled, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
 		len(crawl.URLs), len(allParams), len(hiddenURLs), len(vulnerabilities))
 }

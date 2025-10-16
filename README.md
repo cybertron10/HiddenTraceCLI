@@ -61,7 +61,7 @@ HiddenTraceCLI -url https://example.com [options]
 - `-fast-mode`: Enable fast mode payload set (default: false)
 - `-ultra-fast`: Enable ultra fast mode (default: false)
 - `-timeout duration`: Scan timeout (default: 10m)
-- `-output string`: Output directory for results (default: "scan_results")
+- `-output string`: Output file (.txt) or directory for results (default: "scan_results")
 - `-wordlist string`: Path to parameter wordlist file (default: "wordlist.txt")
 
 ### Examples
@@ -81,6 +81,9 @@ HiddenTraceCLI.exe -url https://example.com -fast-mode
 
 # Custom output directory and wordlist
 HiddenTraceCLI.exe -url https://example.com -output my_results -wordlist custom_wordlist.txt
+
+# Save directly to a specific file
+HiddenTraceCLI.exe -url https://example.com -output xss_results.txt
 
 # Scan multiple URLs with custom settings
 HiddenTraceCLI.exe -file urls.txt -output batch_results -concurrency 15
