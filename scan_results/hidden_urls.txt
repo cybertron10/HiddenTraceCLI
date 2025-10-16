@@ -1,0 +1,3 @@
+https://public-firing-range.appspot.com/reflected/parameter/form?q=test
+https://public-firing-range.appspot.com/reflected/jsoncallback?callback=test
+https://public-firing-range.appspot.com/angular/angular_body_raw_post/1.6.0?q=test

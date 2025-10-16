@@ -6,10 +6,12 @@ A powerful command-line tool that combines web crawling, parameter extraction, p
 
 - **Web Crawling**: Intelligent crawling to discover URLs and endpoints
 - **Parameter Extraction**: Extract parameters from forms, URLs, and JavaScript
-- **Parameter Fuzzing**: Discover hidden parameters using wordlists
+- **Parameter Fuzzing**: Discover hidden parameters using wordlists (25,000+ parameters)
 - **XSS Scanning**: Context-aware XSS vulnerability detection using Playwright
 - **Concurrent Processing**: Configurable concurrency for faster scanning
 - **Headless Browser Support**: Uses Playwright for advanced browser automation
+- **Comprehensive Output**: Multiple output files with detailed results
+- **Progress Tracking**: Real-time progress updates during scanning phases
 
 ## Installation
 
@@ -35,12 +37,15 @@ go build -o hiddentrace-cli.exe
 
 ### Options
 
-- `-url string`: Target URL or domain to scan (required)
-- `-concurrency int`: Number of concurrent scans (default: 5)
+- `-url string`: Target URL or domain to scan (required if -file not specified)
+- `-file string`: File containing list of URLs to scan (one per line, required if -url not specified)
+- `-concurrency int`: Number of concurrent scans (default: 10)
 - `-headless`: Use headless browser (default: true)
 - `-fast-mode`: Enable fast mode payload set (default: false)
 - `-ultra-fast`: Enable ultra fast mode (default: false)
 - `-timeout duration`: Scan timeout (default: 10m)
+- `-output string`: Output directory for results (default: "scan_results")
+- `-wordlist string`: Path to parameter wordlist file (default: "wordlist.txt")
 
 ### Examples
 
@@ -48,23 +53,38 @@ go build -o hiddentrace-cli.exe
 # Basic scan
 ./hiddentrace-cli.exe -url https://example.com
 
+# Scan multiple URLs from file
+./hiddentrace-cli.exe -file urls.txt
+
 # High concurrency scan
 ./hiddentrace-cli.exe -url https://example.com -concurrency 10
 
 # Fast mode scan
 ./hiddentrace-cli.exe -url https://example.com -fast-mode
 
-# Save output to file
-./hiddentrace-cli.exe -url https://example.com -concurrency 10 > scan_results.txt 2>&1
+# Custom output directory and wordlist
+./hiddentrace-cli.exe -url https://example.com -output my_results -wordlist custom_wordlist.txt
+
+# Scan multiple URLs with custom settings
+./hiddentrace-cli.exe -file urls.txt -output batch_results -concurrency 15
+
+# Save console output to file
+./hiddentrace-cli.exe -url https://example.com -concurrency 10 > console_output.txt 2>&1
 ```
 
 ## How It Works
 
-1. **Crawling**: Discovers all accessible URLs and endpoints on the target domain
-2. **Parameter Discovery**: Extracts parameters from forms, query strings, and JavaScript
-3. **Parameter Fuzzing**: Uses wordlists to discover hidden parameters
-4. **XSS Scanning**: Performs context-aware XSS testing using Playwright browser automation
-5. **Results**: Provides detailed output of discovered vulnerabilities
+1. **Phase 1 - Crawling**: Discovers all accessible URLs and endpoints on the target domain
+2. **Phase 2 - Parameter Extraction**: Extracts parameters from forms, query strings, and JavaScript
+3. **Phase 3 - Parameter Fuzzing**: Uses wordlists (25,000+ parameters) to discover hidden parameters
+4. **Phase 4 - XSS Scanning**: Performs context-aware XSS testing using Playwright browser automation
+5. **Results**: Generates comprehensive output files with detailed results
+
+## Output Files
+
+After scan completion, only one file is saved in the output directory:
+
+- **`xss_vulnerabilities.txt`**: XSS vulnerabilities found with exploit URLs and payloads
 
 ## Architecture
 

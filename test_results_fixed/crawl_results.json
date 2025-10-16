@@ -1,0 +1,2013 @@
+{
+  "urls": [
+    "https://public-firing-range.appspot.com/mixedcontent/index.html",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/eval",
+    "https://public-firing-range.appspot.com/tags/tag/div/style?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/iframe.src#//example.org",
+    "https://public-firing-range.appspot.com/reflected/url/a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_path#urldom/script.js",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/address/location/rangeCreateContextualFragment",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithXFO/#q=foo",
+    "https://public-firing-range.appspot.com/tags/tag/style?q=a",
+    "https://public-firing-range.appspot.com/tags/tag/script/src?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_name?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/title?q=a",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginStartsWith",
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/documentWrite",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.0?q=test",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_import?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/reverseclickjacking/",
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_escaped/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_non_ng/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_quoted_string?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/array/eval",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/badscriptimport/index.html",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.6.0?q=test",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_script?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style_font_value?q=a",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/documentWrite",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_domain#/urldom",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_quoted_string?q=a",
+    "https://public-firing-range.appspot.com/clickjacking/clickjacking_csp_no_frame_ancestors",
+    "https://public-firing-range.appspot.com/angular/angular_storage_parse/1.6.0",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/tagname?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_quoted?q=a",
+    "https://public-firing-range.appspot.com/reflected/index.html",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/innerHtml",
+    "https://public-firing-range.appspot.com/reflected/jsoncallback",
+    "https://public-firing-range.appspot.com/urldom/location/hash/xhr.open#//example.org",
+    "https://public-firing-range.appspot.com/reflected/parameter/noscript?q=a",
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseSensitive/script?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/body_comment?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_query#firing-range",
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.src.value#//example.org",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_eval?q=a",
+    "https://public-firing-range.appspot.com/redirect/index.html",
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/eval",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/object_raw?q=https://google.com",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/array/eval",
+    "https://public-firing-range.appspot.com/address/locationsearch/documentwrite",
+    "https://public-firing-range.appspot.com/angular/angular_cookie_parse/1.6.0",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/documentWrite",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://127.0.0.2/localhost_import.js",
+    "https://public-firing-range.appspot.com/reflected/parameter/iframe_attribute_value?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style_font_value?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/body_comment?q=a",
+    "https://public-firing-range.appspot.com/redirect/parameter?url=/",
+    "https://public-firing-range.appspot.com/address/URLUnencoded/documentwrite",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/?q=%26callback%3Dfoo%23",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.1.5?q=test",
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_escaped_alt_symbols/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/object/application_x-shockwave-flash?q=https://google.com",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/eval",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/eval",
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/?q=%26callback%3Durc_button.click%23",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_preload_missing",
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/eval",
+    "https://public-firing-range.appspot.com/address/location.hash/documentwriteln",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/?q=%26callback%3Dfoo%23",
+    "https://public-firing-range.appspot.com/tags/tag?q=a",
+    "https://public-firing-range.appspot.com/tags/tag/a/style?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style?q=a",
+    "https://public-firing-range.appspot.com/flashinjection/callbackParameterDoesNothing?callback=func",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/eval",
+    "https://public-firing-range.appspot.com/dom/dompropagation/",
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_quoted/DOUBLE_QUOTED_ATTRIBUTE?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_eval?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.movie.value#//example.org",
+    "https://public-firing-range.appspot.com/urldom/jsonp?callback=foo",
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=foo",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=https://google.com",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/reflected/parameter/json?q=a",
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_unquoted/UNQUOTED_ATTRIBUTE?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/body_comment?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/href?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/window.open#//example.org",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie/eval",
+    "https://public-firing-range.appspot.com/address/location/replace",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://192.168.1.2/private_network_import.js",
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_ng/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/reflected/parameter/body/500?q=a",
+    "https://public-firing-range.appspot.com/escape/js/encodeURIComponent?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src#//example.org",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithoutXFO/#q=foo",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithXFO/#q=%26callback%3Dfoo%23",
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_unquoted?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/body/400?q=a",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowNullOrigin",
+    "https://public-firing-range.appspot.com/escape/js/html_escape?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_assignment?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/eval",
+    "https://public-firing-range.appspot.com/remoteinclude/object_hash.html#https://google.com",
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/eval",
+    "https://public-firing-range.appspot.com/address/location/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/array/eval",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/improperOriginValidationWithPartialStringComparison",
+    "https://public-firing-range.appspot.com/vulnerablelibraries/jquery.html",
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_post/1.6.0",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_singlequoted?q=a",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_includesubdomains_missing",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithoutXFO/#q=%26callback%3Dfoo%23",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_unquoted?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_assignment?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_script?q=a",
+    "https://public-firing-range.appspot.com/urldom/redirect?url=http://example.com",
+    "https://public-firing-range.appspot.com/angular/angular_body_raw/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginEndsWith",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/body?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_singlequoted_string?q=a",
+    "https://public-firing-range.appspot.com/remoteinclude/index.html",
+    "https://public-firing-range.appspot.com/address/location/assign",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.24?q=test",
+    "https://public-firing-range.appspot.com/reflected/contentsniffing/plaintext?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_comment?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/search/svg.a?//example.org",
+    "https://public-firing-range.appspot.com/urldom/location/hash/fetch#//example.org",
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/array/eval",
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/InCallback/?q=urc_button.click",
+    "https://public-firing-range.appspot.com/reflected/parameter/body/403?q=a",
+    "https://public-firing-range.appspot.com/tags/tag/a/href?q=a",
+    "https://public-firing-range.appspot.com/tags/tag/iframe?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_assignment?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/form",
+    "https://public-firing-range.appspot.com/reflected/url/css_import?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style_font_value?q=a",
+    "https://public-firing-range.appspot.com/flashinjection/index.html",
+    "https://public-firing-range.appspot.com/address/location.hash/setTimeout",
+    "https://public-firing-range.appspot.com/reflected/url/object_param?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style_value?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_quoted?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/tagname?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/leakedcookie/leakedinresource",
+    "https://public-firing-range.appspot.com",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_name?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/body?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_script?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_slashquoted_string?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_name?q=a",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/index.html",
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/property/documentWrite",
+    "https://public-firing-range.appspot.com/address/location.hash/eval",
+    "https://public-firing-range.appspot.com/angular/angular_post_message_parse/1.6.0",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_comment?q=a",
+    "https://public-firing-range.appspot.com/tags/expression?q=a",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowInsecureScheme",
+    "https://public-firing-range.appspot.com/address/location.hash/documentwrite",
+    "https://public-firing-range.appspot.com/reflected/parameter/body?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_singlequoted_string?q=a",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_missing",
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.code.value#//example.org",
+    "https://public-firing-range.appspot.com/address/location/eval",
+    "https://public-firing-range.appspot.com/address/location.hash/replace",
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity_dynamically_added.html",
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=urc_button.click",
+    "https://public-firing-range.appspot.com/urldom/location/search/button.formaction?//example.org",
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/eval",
+    "https://public-firing-range.appspot.com/angular/angular_body_alt_symbols_raw/1.6.0?q=test",
+    "https://public-firing-range.appspot.com/reflected/parameter/style_attribute_value?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style_value?q=a",
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity.html",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_unquoted?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/form.action#//example.org",
+    "https://public-firing-range.appspot.com/flashinjection/callbackIsEchoedBack?callback=func",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/textarea?q=a",
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=foo#\u0026callback=callbackFunc",
+    "https://public-firing-range.appspot.com/address/location.hash/rangeCreateContextualFragment",
+    "https://public-firing-range.appspot.com/vulnerablelibraries/index.html",
+    "https://public-firing-range.appspot.com/clickjacking/index.html",
+    "https://public-firing-range.appspot.com/address/locationhref/documentwrite",
+    "https://public-firing-range.appspot.com/tags/tag/div?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/search/frame.src?//example.org",
+    "https://public-firing-range.appspot.com/urldom/location/hash/input.formaction#//example.org",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/innerHtml",
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_non_ng_raw/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_singlequoted?q=a",
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseSensitive/SCRIPT?q=a",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginRegexDot",
+    "https://public-firing-range.appspot.com/leakedcookie/index.html",
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/array/eval",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.19?q=test",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/href?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/search/area.href?//example.org",
+    "https://public-firing-range.appspot.com/leakedcookie/leakedcookie",
+    "https://public-firing-range.appspot.com/urldom/location/hash/embed.src#//example.org",
+    "https://public-firing-range.appspot.com/redirect/parameter/NOSTARTSWITHJS?url=/",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=urc_button.click#\u0026callback=callbackFunc",
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/index.html",
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://g00gle.com/typosquatting_domain.js",
+    "https://public-firing-range.appspot.com/reflected/parameter/textarea_attribute_value?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/head?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style_value?q=a\u0026escape=HTML_ESCAPE",
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginProtocolDowngrade",
+    "https://public-firing-range.appspot.com/address/location.hash/formaction",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/eval",
+    "https://public-firing-range.appspot.com/address/location.hash/function",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.18?q=test",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_quoted_string?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.url.value#//example.org",
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/eval",
+    "https://public-firing-range.appspot.com/escape/index.html",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_eval?q=a",
+    "https://public-firing-range.appspot.com/reflected/url/object_data?q=a",
+    "https://public-firing-range.appspot.com/angular/angular_body/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/urldom/location/search/location.assign?//example.org",
+    "https://public-firing-range.appspot.com/tags/index.html",
+    "https://public-firing-range.appspot.com/address/index.html",
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/InCallback/#q=urc_button.click",
+    "https://public-firing-range.appspot.com/tags/tag/img?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_slashquoted_string?q=a",
+    "https://public-firing-range.appspot.com/escape/js/escape?q=a",
+    "https://public-firing-range.appspot.com/address/location/documentwriteln",
+    "https://public-firing-range.appspot.com/address/documentURI/documentwrite",
+    "https://public-firing-range.appspot.com/address/location.hash/onclickAddEventListener",
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/OtherParameter/#q=%26callback%3Durc_button.click%23",
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_singlequoted/SINGLE_QUOTED_ATTRIBUTE?q=a",
+    "https://public-firing-range.appspot.com/address/baseURI/documentwrite",
+    "https://public-firing-range.appspot.com/redirect/meta?q=/",
+    "https://public-firing-range.appspot.com/tags/tag/meta?q=a",
+    "https://public-firing-range.appspot.com/tags/tag/body/onload?q=a",
+    "https://public-firing-range.appspot.com/angular/angular_form_parse/1.6.0",
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_singlequoted?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_import?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/documentWrite",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/reflected/contentsniffing/json?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/link.href#//example.org",
+    "https://public-firing-range.appspot.com/",
+    "https://public-firing-range.appspot.com/dom/index.html",
+    "https://public-firing-range.appspot.com/reflected/url/script_src?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/documentWrite",
+    "https://public-firing-range.appspot.com/dom/javascripturi.html",
+    "https://public-firing-range.appspot.com/address/location.hash/onclickSetAttribute",
+    "https://public-firing-range.appspot.com/reflected/parameter/js_comment?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/innerHtml",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/documentWrite",
+    "https://public-firing-range.appspot.com/address/location.hash/jshref",
+    "https://public-firing-range.appspot.com/tags/multiline?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/iframe_srcdoc?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/textarea?q=a",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/+%20msg.data.source%20+%20",
+    "https://public-firing-range.appspot.com/angular/index.html",
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/documentWrite",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/improperOriginValidationWithRegExp",
+    "https://public-firing-range.appspot.com/address/location.hash/innerHtml",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithXFO/?q=foo",
+    "https://public-firing-range.appspot.com/angular/angular_body_alt_symbols/1.4.0?q=test",
+    "https://public-firing-range.appspot.com/reflected/parameter/tagname?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/object.data#//example.org",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/a",
+    "https://public-firing-range.appspot.com/urldom/index.html",
+    "https://public-firing-range.appspot.com/address/locationpathname/documentwrite",
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_quoted?q=a",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_max_age_missing",
+    "https://public-firing-range.appspot.com/remoteinclude/script_hash.html#https://google.com",
+    "https://public-firing-range.appspot.com/address/URL/documentwrite",
+    "https://public-firing-range.appspot.com/reflected/url/href?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_slashquoted_string?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/head?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/a.href#//example.org",
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/array/eval",
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/innerHtml",
+    "https://public-firing-range.appspot.com/address/location.hash/inlineevent",
+    "https://public-firing-range.appspot.com/reflected/parameter/body/401?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.href#//example.org",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/innerHtml",
+    "https://public-firing-range.appspot.com/address/location/setTimeout",
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/textarea?q=a",
+    "https://public-firing-range.appspot.com/urldom/jsonp?callback=foobar",
+    "https://public-firing-range.appspot.com/urldom/location/hash/base.href#//example.org",
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithoutXFO/?q=foo",
+    "https://public-firing-range.appspot.com/cors/alloworigin/dynamicAllowOrigin",
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_max_age_too_low",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/eval",
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/complexMessageDocumentWriteEval",
+    "https://public-firing-range.appspot.com/reflected/filteredcharsets/attribute_unquoted/DoubleQuoteSinglequote?q=a",
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_singlequoted_string?q=a",
+    "https://public-firing-range.appspot.com/urldom/location/hash/document.location#//example.org",
+    "https://public-firing-range.appspot.com/cors/index.html",
+    "https://public-firing-range.appspot.com/address/location/documentwrite",
+    "https://public-firing-range.appspot.com/clickjacking/clickjacking_xfo_allowall",
+    "https://public-firing-range.appspot.com/reflected/filteredcharsets/body/SpaceDoubleQuoteSlashEquals?q=a",
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseInsensitive/script?q=a",
+    "https://public-firing-range.appspot.com/reflected/parameter/head?q=a",
+    "https://public-firing-range.appspot.com/address/location.hash/assign"
+  ],
+  "parameters": {
+    "https://public-firing-range.appspot.com": [],
+    "https://public-firing-range.appspot.com/": [],
+    "https://public-firing-range.appspot.com/address/URL/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/URLUnencoded/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/baseURI/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/documentURI/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/index.html": [],
+    "https://public-firing-range.appspot.com/address/location.hash/assign": [],
+    "https://public-firing-range.appspot.com/address/location.hash/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/location.hash/documentwriteln": [],
+    "https://public-firing-range.appspot.com/address/location.hash/eval": [],
+    "https://public-firing-range.appspot.com/address/location.hash/formaction": [],
+    "https://public-firing-range.appspot.com/address/location.hash/function": [],
+    "https://public-firing-range.appspot.com/address/location.hash/inlineevent": [],
+    "https://public-firing-range.appspot.com/address/location.hash/innerHtml": [],
+    "https://public-firing-range.appspot.com/address/location.hash/jshref": [],
+    "https://public-firing-range.appspot.com/address/location.hash/onclickAddEventListener": [],
+    "https://public-firing-range.appspot.com/address/location.hash/onclickSetAttribute": [],
+    "https://public-firing-range.appspot.com/address/location.hash/rangeCreateContextualFragment": [],
+    "https://public-firing-range.appspot.com/address/location.hash/replace": [],
+    "https://public-firing-range.appspot.com/address/location.hash/setTimeout": [],
+    "https://public-firing-range.appspot.com/address/location/assign": [],
+    "https://public-firing-range.appspot.com/address/location/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/location/documentwriteln": [],
+    "https://public-firing-range.appspot.com/address/location/eval": [],
+    "https://public-firing-range.appspot.com/address/location/innerHtml": [],
+    "https://public-firing-range.appspot.com/address/location/rangeCreateContextualFragment": [],
+    "https://public-firing-range.appspot.com/address/location/replace": [],
+    "https://public-firing-range.appspot.com/address/location/setTimeout": [],
+    "https://public-firing-range.appspot.com/address/locationhref/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/locationpathname/documentwrite": [],
+    "https://public-firing-range.appspot.com/address/locationsearch/documentwrite": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.1.5?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.18?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.19?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.2.24?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body/1.6.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_alt_symbols/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_alt_symbols_raw/1.6.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_ng/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_non_ng/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_attribute_non_ng_raw/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_raw/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_escaped/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_escaped_alt_symbols/1.4.0?q=test": [],
+    "https://public-firing-range.appspot.com/angular/angular_body_raw_post/1.6.0": [
+      {
+        "name": "q",
+        "type": "form",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/angular/angular_body_raw_post/1.6.0"
+      }
+    ],
+    "https://public-firing-range.appspot.com/angular/angular_cookie_parse/1.6.0": [],
+    "https://public-firing-range.appspot.com/angular/angular_form_parse/1.6.0": [],
+    "https://public-firing-range.appspot.com/angular/angular_post_message_parse/1.6.0": [],
+    "https://public-firing-range.appspot.com/angular/angular_storage_parse/1.6.0": [],
+    "https://public-firing-range.appspot.com/angular/index.html": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "test",
+        "endpoint": "https://public-firing-range.appspot.com/angular/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/badscriptimport/index.html": [
+      {
+        "name": "p",
+        "type": "query",
+        "value": "255",
+        "endpoint": "https://public-firing-range.appspot.com/badscriptimport/index.html"
+      },
+      {
+        "name": "p",
+        "type": "query",
+        "value": "255\u003c/a\u003e.",
+        "endpoint": "https://public-firing-range.appspot.com/badscriptimport/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "http://127.0.0.2/localhost_import.js",
+        "endpoint": "https://public-firing-range.appspot.com/badscriptimport/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "http://192.168.1.2/private_network_import.js",
+        "endpoint": "https://public-firing-range.appspot.com/badscriptimport/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "http://g00gle.com/typosquatting_domain.js",
+        "endpoint": "https://public-firing-range.appspot.com/badscriptimport/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/clickjacking/clickjacking_csp_no_frame_ancestors": [],
+    "https://public-firing-range.appspot.com/clickjacking/clickjacking_xfo_allowall": [],
+    "https://public-firing-range.appspot.com/clickjacking/index.html": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowInsecureScheme": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowNullOrigin": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginEndsWith": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginProtocolDowngrade": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginRegexDot": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/allowOriginStartsWith": [],
+    "https://public-firing-range.appspot.com/cors/alloworigin/dynamicAllowOrigin": [],
+    "https://public-firing-range.appspot.com/cors/index.html": [],
+    "https://public-firing-range.appspot.com/dom/dompropagation/": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/eval": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/formSubmission/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/eval": [],
+    "https://public-firing-range.appspot.com/dom/eventtriggering/document/inputTyping/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/index.html": [],
+    "https://public-firing-range.appspot.com/dom/javascripturi.html": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/cookie_set/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/document/referrer/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/localStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/external/sessionStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/localStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/+%20msg.data.source%20+%20": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/complexMessageDocumentWriteEval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/improperOriginValidationWithPartialStringComparison": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/improperOriginValidationWithRegExp": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/postMessage/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/sessionStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdom/window/name/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/localStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/array/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/documentWrite": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/eval": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/function/innerHtml": [],
+    "https://public-firing-range.appspot.com/dom/toxicdomscripts/sessionStorage/property/documentWrite": [],
+    "https://public-firing-range.appspot.com/escape/index.html": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "escape",
+        "type": "query",
+        "value": "HTML_ESCAPE",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/escape/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/escape/js/encodeURIComponent?q=a": [],
+    "https://public-firing-range.appspot.com/escape/js/escape?q=a": [],
+    "https://public-firing-range.appspot.com/escape/js/html_escape?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_name?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_quoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_script?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_singlequoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/attribute_unquoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/body?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/body_comment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_import?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style_font_value?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/css_style_value?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/head?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/href?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_assignment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_comment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_eval?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_quoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_singlequoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/js_slashquoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/tagname?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/encodeUrl/textarea?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_name?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_quoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_script?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_singlequoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/attribute_unquoted?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/body?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/body_comment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_import?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style_font_value?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/css_style_value?q=a\u0026escape=HTML_ESCAPE": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/head?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/href?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_assignment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_comment?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_eval?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_quoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_singlequoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/js_slashquoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/tagname?q=a": [],
+    "https://public-firing-range.appspot.com/escape/serverside/escapeHtml/textarea?q=a": [],
+    "https://public-firing-range.appspot.com/flashinjection/callbackIsEchoedBack?callback=func": [],
+    "https://public-firing-range.appspot.com/flashinjection/callbackParameterDoesNothing?callback=func": [],
+    "https://public-firing-range.appspot.com/flashinjection/index.html": [
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "func",
+        "endpoint": "https://public-firing-range.appspot.com/flashinjection/index.html"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "func",
+        "endpoint": "https://public-firing-range.appspot.com/flashinjection/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/index.html": [],
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity.html": [],
+    "https://public-firing-range.appspot.com/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity_dynamically_added.html": [],
+    "https://public-firing-range.appspot.com/leakedcookie/index.html": [],
+    "https://public-firing-range.appspot.com/leakedcookie/leakedcookie": [],
+    "https://public-firing-range.appspot.com/leakedcookie/leakedinresource": [],
+    "https://public-firing-range.appspot.com/mixedcontent/index.html": [],
+    "https://public-firing-range.appspot.com/redirect/index.html": [
+      {
+        "name": "url",
+        "type": "query",
+        "value": "/",
+        "endpoint": "https://public-firing-range.appspot.com/redirect/index.html"
+      },
+      {
+        "name": "url",
+        "type": "query",
+        "value": "/",
+        "endpoint": "https://public-firing-range.appspot.com/redirect/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "/",
+        "endpoint": "https://public-firing-range.appspot.com/redirect/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/redirect/meta?q=/": [],
+    "https://public-firing-range.appspot.com/redirect/parameter/NOSTARTSWITHJS?url=/": [],
+    "https://public-firing-range.appspot.com/redirect/parameter?url=/": [],
+    "https://public-firing-range.appspot.com/reflected/contentsniffing/json?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/contentsniffing/plaintext?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_quoted/DOUBLE_QUOTED_ATTRIBUTE?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_singlequoted/SINGLE_QUOTED_ATTRIBUTE?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/escapedparameter/js_eventhandler_unquoted/UNQUOTED_ATTRIBUTE?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/filteredcharsets/attribute_unquoted/DoubleQuoteSinglequote?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/filteredcharsets/body/SpaceDoubleQuoteSlashEquals?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseInsensitive/script?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseSensitive/SCRIPT?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/filteredstrings/body/caseSensitive/script?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/index.html": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reflected/jsoncallback": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_name?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_quoted?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_script?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_singlequoted?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/attribute_unquoted?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body/400?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body/401?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body/403?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body/500?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/body_comment?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style_font_value?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/css_style_value?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/form": [
+      {
+        "name": "q",
+        "type": "form",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reflected/parameter/form"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reflected/parameter/head?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/iframe_attribute_value?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/iframe_srcdoc?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_assignment?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_comment?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_eval?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_quoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_singlequoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/js_slashquoted_string?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/json?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/noscript?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/style_attribute_value?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/tagname?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/textarea?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/textarea_attribute_value?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/parameter/title?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/url/a": [],
+    "https://public-firing-range.appspot.com/reflected/url/css_import?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/url/href?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/url/object_data?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/url/object_param?q=a": [],
+    "https://public-firing-range.appspot.com/reflected/url/script_src?q=a": [],
+    "https://public-firing-range.appspot.com/remoteinclude/index.html": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "https://google.com",
+        "endpoint": "https://public-firing-range.appspot.com/remoteinclude/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "https://google.com",
+        "endpoint": "https://public-firing-range.appspot.com/remoteinclude/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "https://google.com",
+        "endpoint": "https://public-firing-range.appspot.com/remoteinclude/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/remoteinclude/object_hash.html#https://google.com": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/object/application_x-shockwave-flash?q=https://google.com": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/object_raw?q=https://google.com": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://127.0.0.2/localhost_import.js": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://192.168.1.2/private_network_import.js": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=http://g00gle.com/typosquatting_domain.js": [],
+    "https://public-firing-range.appspot.com/remoteinclude/parameter/script?q=https://google.com": [],
+    "https://public-firing-range.appspot.com/remoteinclude/script_hash.html#https://google.com": [],
+    "https://public-firing-range.appspot.com/reverseclickjacking/": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "urc_button.click",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "%q",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "%26callback%3Durc_button.click%23",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "callbackFunc",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "amp;other",
+        "type": "query",
+        "value": "%q",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "foo",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "%26callback%3Dfoo%23",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "foo",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "%26callback%3Dfoo%23",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=foo": [],
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=foo#\u0026callback=callbackFunc": [],
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=urc_button.click": [],
+    "https://public-firing-range.appspot.com/reverseclickjacking/jsonpendpoint?q=\u0026callback=urc_button.click#\u0026callback=callbackFunc": [],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithXFO/#q=foo": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithXFO/#q=foo"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithXFO/#q=foo"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithoutXFO/#q=foo": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithoutXFO/#q=foo"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithoutXFO/#q=foo"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithXFO/#q=%26callback%3Dfoo%23": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithXFO/#q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithXFO/#q=%26callback%3Dfoo%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithoutXFO/#q=%26callback%3Dfoo%23": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithoutXFO/#q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithoutXFO/#q=%26callback%3Dfoo%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithXFO/?q=foo": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithXFO/?q=foo"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foo",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithXFO/?q=foo"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithoutXFO/?q=foo": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithoutXFO/?q=foo"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foo",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithoutXFO/?q=foo"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/?q=%26callback%3Dfoo%23": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/?q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foo#",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/?q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "callbackFunc",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/?q=%26callback%3Dfoo%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/?q=%26callback%3Dfoo%23": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/?q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foo#",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/?q=%26callback%3Dfoo%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "callbackFunc",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/?q=%26callback%3Dfoo%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/InCallback/#q=urc_button.click": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/InCallback/#q=urc_button.click"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/InCallback/#q=urc_button.click"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/OtherParameter/#q=%26callback%3Durc_button.click%23": [
+      {
+        "name": "#]q",
+        "type": "query",
+        "value": "([^",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/OtherParameter/#q=%26callback%3Durc_button.click%23"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInFragment/OtherParameter/#q=%26callback%3Durc_button.click%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/InCallback/?q=urc_button.click": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/InCallback/?q=urc_button.click"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "urc_button.click",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/InCallback/?q=urc_button.click"
+      }
+    ],
+    "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/?q=%26callback%3Durc_button.click%23": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/?q=%26callback%3Durc_button.click%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "urc_button.click#",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/?q=%26callback%3Durc_button.click%23"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "callbackFunc",
+        "endpoint": "https://public-firing-range.appspot.com/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/?q=%26callback%3Durc_button.click%23"
+      }
+    ],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_includesubdomains_missing": [],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_max_age_missing": [],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_max_age_too_low": [],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_missing": [],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/hsts_preload_missing": [],
+    "https://public-firing-range.appspot.com/stricttransportsecurity/index.html": [],
+    "https://public-firing-range.appspot.com/tags/expression?q=a": [],
+    "https://public-firing-range.appspot.com/tags/index.html": [
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      },
+      {
+        "name": "q",
+        "type": "query",
+        "value": "a",
+        "endpoint": "https://public-firing-range.appspot.com/tags/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/tags/multiline?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/a/href?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/a/style?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/body/onload?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/div/style?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/div?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/iframe?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/img?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/meta?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/script/src?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag/style?q=a": [],
+    "https://public-firing-range.appspot.com/tags/tag?q=a": [],
+    "https://public-firing-range.appspot.com/urldom/index.html": [
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foo",
+        "endpoint": "https://public-firing-range.appspot.com/urldom/index.html"
+      },
+      {
+        "name": "url",
+        "type": "query",
+        "value": "http://example.com",
+        "endpoint": "https://public-firing-range.appspot.com/urldom/index.html"
+      },
+      {
+        "name": "callback",
+        "type": "query",
+        "value": "foobar",
+        "endpoint": "https://public-firing-range.appspot.com/urldom/index.html"
+      },
+      {
+        "name": "url",
+        "type": "query",
+        "value": "http://example.com",
+        "endpoint": "https://public-firing-range.appspot.com/urldom/index.html"
+      }
+    ],
+    "https://public-firing-range.appspot.com/urldom/jsonp?callback=foo": [],
+    "https://public-firing-range.appspot.com/urldom/jsonp?callback=foobar": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/a.href#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/base.href#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/document.location#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/embed.src#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/fetch#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/form.action#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/iframe.src#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/input.formaction#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/link.href#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/object.data#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.code.value#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.movie.value#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.src.value#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/param.url.value#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.href#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_domain#/urldom": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_path#urldom/script.js": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_query#firing-range": [
+      {
+        "name": "referrer",
+        "type": "query",
+        "value": "",
+        "endpoint": "https://public-firing-range.appspot.com/urldom/location/hash/script.src.partial_query#firing-range"
+      }
+    ],
+    "https://public-firing-range.appspot.com/urldom/location/hash/window.open#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/hash/xhr.open#//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/search/area.href?//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/search/button.formaction?//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/search/frame.src?//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/search/location.assign?//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/location/search/svg.a?//example.org": [],
+    "https://public-firing-range.appspot.com/urldom/redirect?url=http://example.com": [],
+    "https://public-firing-range.appspot.com/vulnerablelibraries/index.html": [],
+    "https://public-firing-range.appspot.com/vulnerablelibraries/jquery.html": []
+  },
+  "endpoints": [
+    "/urldom/location/hash/xhr.open",
+    "/redirect/index.html",
+    "/urldom/location/hash/param.movie.value",
+    "/dom/eventtriggering/document/inputTyping/innerHtml",
+    "/escape/serverside/encodeUrl/js_comment",
+    "/urldom/location/hash/a.href",
+    "/urldom/index.html",
+    "/leakedcookie/index.html",
+    "/dom/toxicdom/external/sessionStorage/array/eval",
+    "/stricttransportsecurity/index.html",
+    "/reflected/parameter/body",
+    "/urldom/location/hash/object.data",
+    "/reflected/filteredcharsets/attribute_unquoted/DoubleQuoteSinglequote",
+    "/address/location/replace",
+    "/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithXFO/",
+    "/escape/serverside/escapeHtml/css_style_font_value",
+    "/tags/tag",
+    "/tags/tag/a/style",
+    "/reflected/parameter/body/400",
+    "/urldom/redirect",
+    "/dom/toxicdom/document/referrer/documentWrite",
+    "/escape/serverside/escapeHtml/js_slashquoted_string",
+    "/reflected/escapedparameter/js_eventhandler_quoted/DOUBLE_QUOTED_ATTRIBUTE",
+    "/urldom/location/hash/form.action",
+    "/dom/toxicdom/document/referrer/eval",
+    "/escape/index.html",
+    "/tags/tag/meta",
+    "/escape/serverside/escapeHtml/a",
+    "/dom/toxicdomscripts/localStorage/array/eval",
+    "/escape/serverside/encodeUrl/attribute_quoted",
+    "/dom/toxicdom/postMessage/documentWrite",
+    "/dom/toxicdom/postMessage/improperOriginValidationWithRegExp",
+    "/escape/serverside/encodeUrl/tagname",
+    "/dom/toxicdom/localStorage/function/documentWrite",
+    "/escape/serverside/escapeHtml/css_import",
+    "/escape/serverside/escapeHtml/attribute_script",
+    "/clickjacking/clickjacking_csp_no_frame_ancestors",
+    "/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithXFO/",
+    "/reflected/parameter/css_style_font_value",
+    "/address/location/eval",
+    "/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity.html",
+    "/flashinjection/callbackIsEchoedBack",
+    "/dom/toxicdom/external/sessionStorage/function/eval",
+    "/reflected/parameter/iframe_attribute_value",
+    "/reflected/url/css_import",
+    "/reflected/parameter/js_slashquoted_string",
+    "/urldom/location/hash/input.formaction",
+    "/urldom/location/hash/param.url.value",
+    "/angular/angular_body/1.4.0",
+    "/address/documentURI/documentwrite",
+    "/escape/serverside/escapeHtml/js_assignment",
+    "/address/locationhref/documentwrite",
+    "/escape/serverside/encodeUrl/css_import",
+    "/reflected/url/href",
+    "/escape/serverside/escapeHtml/head",
+    "/cors/alloworigin/dynamicAllowOrigin",
+    "/flashinjection/callbackParameterDoesNothing",
+    "/escape/serverside/escapeHtml/attribute_singlequoted",
+    "/cors/alloworigin/allowOriginProtocolDowngrade",
+    "/address/location.hash/jshref",
+    "/angular/angular_body_alt_symbols/1.4.0",
+    "/escape/serverside/escapeHtml/js_quoted_string",
+    "/urldom/location/hash/fetch",
+    "/angular/angular_body_attribute_non_ng_raw/1.4.0",
+    "/dom/toxicdom/external/sessionStorage/function/documentWrite",
+    "/dom/toxicdom/document/cookie_set/innerHtml",
+    "/reverseclickjacking/multipage/ParameterInQuery/InCallback/WithoutXFO/",
+    "/reflected/parameter/head",
+    "/angular/angular_body_attribute_non_ng/1.4.0",
+    "/dom/toxicdom/document/cookie_set/documentWrite",
+    "/reflected/parameter/js_assignment",
+    "/cors/alloworigin/allowOriginRegexDot",
+    "/reflected/parameter/js_quoted_string",
+    "/urldom/location/hash/link.href",
+    "/escape/serverside/escapeHtml/attribute_quoted",
+    "/tags/multiline",
+    "/cors/index.html",
+    "/reflected/filteredcharsets/body/SpaceDoubleQuoteSlashEquals",
+    "/insecurethirdpartyscripts/third_party_scripts_without_subresource_integrity_dynamically_added.html",
+    "/address/location.hash/innerHtml",
+    "/dom/toxicdom/external/localStorage/function/innerHtml",
+    "/dom/toxicdom/postMessage/eval",
+    "/cors/alloworigin/allowOriginStartsWith",
+    "/remoteinclude/parameter/script",
+    "/tags/tag/iframe",
+    "/clickjacking/index.html",
+    "/angular/angular_body/1.2.19",
+    "/redirect/meta",
+    "/address/baseURI/documentwrite",
+    "/dom/javascripturi.html",
+    "/angular/angular_body/1.2.24",
+    "/escape/serverside/encodeUrl/css_style_value",
+    "/angular/angular_post_message_parse/1.6.0",
+    "/reflected/parameter/textarea_attribute_value",
+    "/reflected/parameter/tagname",
+    "/urldom/location/hash/iframe.src",
+    "/reflected/parameter/noscript",
+    "/reflected/parameter/json",
+    "/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithoutXFO/",
+    "/reflected/parameter/css_style_value",
+    "/dom/eventtriggering/document/formSubmission/eval",
+    "/dom/toxicdom/external/localStorage/property/documentWrite",
+    "/escape/serverside/encodeUrl/attribute_script",
+    "/escape/serverside/escapeHtml/body",
+    "/escape/serverside/escapeHtml/attribute_unquoted",
+    "/reflected/url/a",
+    "/urldom/location/search/svg.a",
+    "/address/location.hash/setTimeout",
+    "/escape/serverside/escapeHtml/css_style",
+    "/tags/tag/script/src",
+    "/reverseclickjacking/",
+    "/redirect/parameter",
+    "/reflected/contentsniffing/json",
+    "/badscriptimport/index.html",
+    "/escape/serverside/encodeUrl/css_style_font_value",
+    "/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithXFO/",
+    "/escape/serverside/escapeHtml/href",
+    "/",
+    "/address/location.hash/onclickSetAttribute",
+    "/dom/toxicdom/localStorage/function/eval",
+    "/escape/serverside/escapeHtml/attribute_name",
+    "/dom/toxicdom/document/referrer/innerHtml",
+    "/address/location.hash/function",
+    "/angular/angular_body/1.6.0",
+    "/escape/serverside/encodeUrl/js_assignment",
+    "/dom/toxicdomscripts/localStorage/function/documentWrite",
+    "/address/location/documentwriteln",
+    "/reflected/parameter/iframe_srcdoc",
+    "/reflected/index.html",
+    "/escape/serverside/encodeUrl/attribute_unquoted",
+    "/escape/serverside/encodeUrl/body",
+    "/dom/toxicdom/window/name/innerHtml",
+    "/urldom/location/search/button.formaction",
+    "/escape/serverside/escapeHtml/textarea",
+    "/escape/serverside/escapeHtml/css_style_value",
+    "/address/location.hash/onclickAddEventListener",
+    "/escape/serverside/encodeUrl/body_comment",
+    "/escape/serverside/encodeUrl/js_eval",
+    "/stricttransportsecurity/hsts_preload_missing",
+    "/cors/alloworigin/allowInsecureScheme",
+    "/dom/index.html",
+    "/angular/angular_body_raw_escaped/1.4.0",
+    "/urldom/location/hash/script.src.partial_query",
+    "/cors/alloworigin/allowOriginEndsWith",
+    "/address/location.hash/documentwrite",
+    "/stricttransportsecurity/hsts_missing",
+    "/angular/index.html",
+    "/stricttransportsecurity/hsts_max_age_missing",
+    "/escape/serverside/escapeHtml/js_comment",
+    "/dom/toxicdom/window/name/documentWrite",
+    "/cors/alloworigin/allowNullOrigin",
+    "/reflected/url/object_param",
+    "/dom/dompropagation/",
+    "/tags/tag/div",
+    "/tags/index.html",
+    "/address/location.hash/assign",
+    "/angular/angular_storage_parse/1.6.0",
+    "/dom/toxicdom/sessionStorage/function/eval",
+    "/dom/toxicdom/postMessage/improperOriginValidationWithPartialStringComparison",
+    "/dom/toxicdom/sessionStorage/function/innerHtml",
+    "/reflected/filteredstrings/body/caseSensitive/SCRIPT",
+    "/escape/serverside/encodeUrl/head",
+    "/reverseclickjacking/multipage/ParameterInFragment/InCallback/WithXFO/",
+    "/dom/toxicdomscripts/sessionStorage/function/innerHtml",
+    "/reflected/parameter/body/403",
+    "/reflected/parameter/form",
+    "/address/location.hash/eval",
+    "/escape/serverside/encodeUrl/attribute_singlequoted",
+    "/reflected/parameter/js_singlequoted_string",
+    "/reflected/url/object_data",
+    "/dom/toxicdom/sessionStorage/property/documentWrite",
+    "/address/location/documentwrite",
+    "/urldom/jsonp",
+    "/reflected/parameter/body/500",
+    "/escape/js/html_escape",
+    "/urldom/location/search/area.href",
+    "/angular/angular_body/1.2.18",
+    "/reflected/parameter/textarea",
+    "/address/location/rangeCreateContextualFragment",
+    "/dom/toxicdom/localStorage/function/innerHtml",
+    "/address/location/assign",
+    "/reflected/parameter/style_attribute_value",
+    "/reflected/escapedparameter/js_eventhandler_singlequoted/SINGLE_QUOTED_ATTRIBUTE",
+    "/escape/serverside/encodeUrl/js_quoted_string",
+    "/reflected/filteredstrings/body/caseSensitive/script",
+    "/angular/angular_body/1.1.5",
+    "/dom/toxicdom/document/cookie/eval",
+    "/reverseclickjacking/singlepage/ParameterInQuery/OtherParameter/",
+    "/reflected/parameter/attribute_unquoted",
+    "/stricttransportsecurity/hsts_includesubdomains_missing",
+    "/urldom/location/search/frame.src",
+    "/angular/angular_form_parse/1.6.0",
+    "/escape/serverside/encodeUrl/textarea",
+    "/escape/serverside/escapeHtml/js_singlequoted_string",
+    "/reflected/filteredstrings/body/caseInsensitive/script",
+    "/dom/toxicdom/external/localStorage/function/documentWrite",
+    "/dom/toxicdomscripts/localStorage/property/documentWrite",
+    "/reflected/contentsniffing/plaintext",
+    "/reverseclickjacking/singlepage/ParameterInQuery/InCallback/",
+    "/reflected/parameter/attribute_script",
+    "/address/location.hash/formaction",
+    "/reflected/parameter/js_eval",
+    "/escape/serverside/escapeHtml/body_comment",
+    "/escape/js/encodeURIComponent",
+    "/vulnerablelibraries/jquery.html",
+    "/redirect/parameter/NOSTARTSWITHJS",
+    "/tags/tag/style",
+    "/urldom/location/hash/param.src.value",
+    "/dom/toxicdom/window/name/eval",
+    "/dom/toxicdom/sessionStorage/array/eval",
+    "/angular/angular_body_raw/1.4.0",
+    "/dom/toxicdomscripts/sessionStorage/property/documentWrite",
+    "/escape/js/escape",
+    "/escape/serverside/escapeHtml/js_eval",
+    "/remoteinclude/parameter/object_raw",
+    "/escape/serverside/encodeUrl/css_style",
+    "/reflected/escapedparameter/js_eventhandler_unquoted/UNQUOTED_ATTRIBUTE",
+    "/remoteinclude/object_hash.html",
+    "/remoteinclude/index.html",
+    "/address/URL/documentwrite",
+    "/angular/angular_body/1.2.0",
+    "/dom/eventtriggering/document/formSubmission/documentWrite",
+    "/reflected/parameter/body_comment",
+    "/urldom/location/hash/window.open",
+    "/escape/serverside/encodeUrl/js_singlequoted_string",
+    "/urldom/location/hash/param.code.value",
+    "/reverseclickjacking/singlepage/ParameterInFragment/OtherParameter/",
+    "/reflected/parameter/js_comment",
+    "/escape/serverside/escapeHtml/tagname",
+    "/escape/serverside/encodeUrl/href",
+    "/urldom/location/hash/embed.src",
+    "/tags/tag/body/onload",
+    "/reflected/parameter/css_style",
+    "/dom/toxicdom/postMessage/+ msg.data.source + ",
+    "/escape/serverside/encodeUrl/a",
+    "/remoteinclude/script_hash.html",
+    "/remoteinclude/parameter/object/application_x-shockwave-flash",
+    "/dom/toxicdom/localStorage/property/documentWrite",
+    "/leakedcookie/leakedcookie",
+    "/insecurethirdpartyscripts/index.html",
+    "/urldom/location/hash/script.href",
+    "/stricttransportsecurity/hsts_max_age_too_low",
+    "/dom/toxicdomscripts/sessionStorage/function/eval",
+    "/urldom/location/hash/script.src",
+    "/address/location/innerHtml",
+    "/tags/tag/img",
+    "/address/location.hash/documentwriteln",
+    "/dom/toxicdom/document/cookie_set/eval",
+    "/reverseclickjacking/jsonpendpoint",
+    "/angular/angular_body_attribute_ng/1.4.0",
+    "/dom/toxicdom/external/sessionStorage/property/documentWrite",
+    "/reflected/parameter/attribute_quoted",
+    "/dom/eventtriggering/document/inputTyping/documentWrite",
+    "/dom/eventtriggering/document/formSubmission/innerHtml",
+    "/address/locationsearch/documentwrite",
+    "/address/URLUnencoded/documentwrite",
+    "/angular/angular_body_raw_escaped_alt_symbols/1.4.0",
+    "/urldom/location/hash/base.href",
+    "/dom/toxicdomscripts/sessionStorage/function/documentWrite",
+    "/dom/toxicdom/external/sessionStorage/function/innerHtml",
+    "/angular/angular_body_alt_symbols_raw/1.6.0",
+    "/dom/toxicdom/postMessage/innerHtml",
+    "/urldom/location/hash/document.location",
+    "/urldom/location/hash/script.src.partial_path",
+    "/dom/toxicdom/sessionStorage/function/documentWrite",
+    "/tags/tag/a/href",
+    "/dom/toxicdom/external/localStorage/function/eval",
+    "/vulnerablelibraries/index.html",
+    "/address/location.hash/rangeCreateContextualFragment",
+    "/address/locationpathname/documentwrite",
+    "/dom/toxicdom/localStorage/array/eval",
+    "/reflected/parameter/attribute_name",
+    "/flashinjection/index.html",
+    "/reflected/parameter/attribute_singlequoted",
+    "/urldom/location/hash/script.src.partial_domain",
+    "/dom/eventtriggering/document/inputTyping/eval",
+    "/clickjacking/clickjacking_xfo_allowall",
+    "/dom/toxicdom/external/localStorage/array/eval",
+    "/reverseclickjacking/multipage/ParameterInQuery/OtherParameter/WithoutXFO/",
+    "/angular/angular_body_raw_post/1.6.0",
+    "/reverseclickjacking/singlepage/ParameterInFragment/InCallback/",
+    "/escape/serverside/encodeUrl/js_slashquoted_string",
+    "/address/location.hash/inlineevent",
+    "/leakedcookie/leakedinresource",
+    "/reflected/url/script_src",
+    "/mixedcontent/index.html",
+    "/tags/tag/div/style",
+    "/reverseclickjacking/multipage/ParameterInFragment/OtherParameter/WithoutXFO/",
+    "/urldom/location/search/location.assign",
+    "/reflected/parameter/title",
+    "/dom/toxicdomscripts/sessionStorage/array/eval",
+    "/escape/serverside/encodeUrl/attribute_name",
+    "/tags/expression",
+    "/dom/toxicdomscripts/localStorage/function/innerHtml",
+    "/dom/toxicdom/postMessage/complexMessageDocumentWriteEval",
+    "/address/index.html",
+    "/reflected/parameter/body/401",
+    "/reflected/jsoncallback",
+    "/angular/angular_cookie_parse/1.6.0",
+    "/dom/toxicdomscripts/localStorage/function/eval",
+    "/address/location.hash/replace",
+    "/address/location/setTimeout"
+  ],
+  "total_pages": 313,
+  "scan_time": 14135014200
+}
