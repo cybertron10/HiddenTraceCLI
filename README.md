@@ -26,6 +26,8 @@ A powerful command-line tool that combines web crawling, parameter extraction, p
 go install github.com/cybertron10/HiddenTraceCLI@latest
 ```
 
+**Note**: The binary will be installed as `HiddenTraceCLI.exe` in your Go bin directory. You may need to add `$GOPATH/bin` to your PATH environment variable to run it from anywhere.
+
 ### Option 2: Build from Source
 
 ```bash
@@ -40,8 +42,11 @@ go build -o hiddentrace-cli.exe
 After installation, you can run the tool directly:
 
 ```bash
-# If installed via go install
-hiddentrace-cli -url https://example.com [options]
+# If installed via go install (Windows)
+HiddenTraceCLI.exe -url https://example.com [options]
+
+# If installed via go install (Linux/Mac)
+HiddenTraceCLI -url https://example.com [options]
 
 # If built from source
 ./hiddentrace-cli.exe -url https://example.com [options]
@@ -63,25 +68,25 @@ hiddentrace-cli -url https://example.com [options]
 
 ```bash
 # Basic scan (after go install)
-hiddentrace-cli -url https://example.com
+HiddenTraceCLI.exe -url https://example.com
 
 # Scan multiple URLs from file
-hiddentrace-cli -file urls.txt
+HiddenTraceCLI.exe -file urls.txt
 
 # High concurrency scan
-hiddentrace-cli -url https://example.com -concurrency 10
+HiddenTraceCLI.exe -url https://example.com -concurrency 10
 
 # Fast mode scan
-hiddentrace-cli -url https://example.com -fast-mode
+HiddenTraceCLI.exe -url https://example.com -fast-mode
 
 # Custom output directory and wordlist
-hiddentrace-cli -url https://example.com -output my_results -wordlist custom_wordlist.txt
+HiddenTraceCLI.exe -url https://example.com -output my_results -wordlist custom_wordlist.txt
 
 # Scan multiple URLs with custom settings
-hiddentrace-cli -file urls.txt -output batch_results -concurrency 15
+HiddenTraceCLI.exe -file urls.txt -output batch_results -concurrency 15
 
 # Save console output to file
-hiddentrace-cli -url https://example.com -concurrency 10 > console_output.txt 2>&1
+HiddenTraceCLI.exe -url https://example.com -concurrency 10 > console_output.txt 2>&1
 ```
 
 ## How It Works
