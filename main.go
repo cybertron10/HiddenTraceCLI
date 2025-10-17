@@ -287,6 +287,9 @@ func main() {
 	if !*quiet { log.Printf("Scan complete! XSS vulnerabilities saved to: %s", outputFile) }
 	if !*quiet { log.Printf("Summary: %d URLs crawled, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
 		len(crawl.URLs), len(allParams), len(hiddenURLs), len(vulnerabilities)) }
+
+	// Always print a final completion message
+	fmt.Println("xss scan completed")
 }
 
 // Helper functions
