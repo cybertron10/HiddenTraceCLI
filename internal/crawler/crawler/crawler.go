@@ -84,15 +84,9 @@ func (c *Crawler) CrawlDomain(baseURL string, headers map[string]string) (*Crawl
 	}
 	
 	c.baseDomain = parsedURL.Host
-	c.basePath = parsedURL.Path
-	
-	// If path is empty or just "/", set to root
-	if c.basePath == "" || c.basePath == "/" {
-		c.basePath = "/"
-		log.Printf("Starting concurrent crawl of domain: %s with %d workers", c.baseDomain, c.maxWorkers)
-	} else {
-		log.Printf("Starting concurrent crawl of domain: %s%s with %d workers (path-restricted)", c.baseDomain, c.basePath, c.maxWorkers)
-	}
+	// Always crawl the entire domain for domain-by-domain processing
+	c.basePath = "/"
+	log.Printf("Starting concurrent crawl of domain: %s with %d workers", c.baseDomain, c.maxWorkers)
 	
 	// Start worker goroutines
 	var wg sync.WaitGroup
