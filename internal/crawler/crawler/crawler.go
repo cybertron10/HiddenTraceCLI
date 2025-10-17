@@ -27,6 +27,7 @@ type Crawler struct {
 	urlQueue   chan string
 	done       chan bool
 	authHeaders map[string]string // Authentication headers
+	quiet      bool
 }
 
 // Parameter represents a discovered parameter
@@ -47,7 +48,7 @@ type CrawlResult struct {
 }
 
 // NewCrawler creates a new intelligent crawler
-func NewCrawler() *Crawler {
+func NewCrawler(quiet bool) *Crawler {
 	client := &http.Client{
 		Timeout: 10 * time.Second, // Reduced timeout for faster crawling
 		Transport: &http.Transport{
@@ -67,6 +68,7 @@ func NewCrawler() *Crawler {
 		maxWorkers: 50, // More concurrent workers for faster crawling
 		urlQueue:   make(chan string, 5000), // Much larger buffer for URLs
 		done:       make(chan bool),
+		quiet:      quiet,
 	}
 }
 
@@ -89,9 +91,9 @@ func (c *Crawler) CrawlDomain(baseURL string, headers map[string]string) (*Crawl
 	// If path is empty or just "/", set to root
 	if c.basePath == "" || c.basePath == "/" {
 		c.basePath = "/"
-		log.Printf("Starting concurrent crawl of domain: %s with %d workers", c.baseDomain, c.maxWorkers)
+		if !c.quiet { log.Printf("Starting concurrent crawl of domain: %s with %d workers", c.baseDomain, c.maxWorkers) }
 	} else {
-		log.Printf("Starting concurrent crawl of domain: %s%s with %d workers (path-restricted)", c.baseDomain, c.basePath, c.maxWorkers)
+		if !c.quiet { log.Printf("Starting concurrent crawl of domain: %s%s with %d workers (path-restricted)", c.baseDomain, c.basePath, c.maxWorkers) }
 	}
 	
 	// Start worker goroutines
@@ -115,10 +117,10 @@ func (c *Crawler) CrawlDomain(baseURL string, headers map[string]string) (*Crawl
 	select {
 	case <-c.done:
 		// Crawl completed successfully
-		log.Printf("Crawl completed successfully")
+		if !c.quiet { log.Printf("Crawl completed successfully") }
 	case <-time.After(10 * time.Minute):
 		// Timeout after 10 minutes for deep crawling
-		log.Printf("Crawl timeout after 10 minutes")
+		if !c.quiet { log.Printf("Crawl timeout after 10 minutes") }
 	}
 	
 	// Convert discovered URLs to slice
@@ -135,8 +137,10 @@ func (c *Crawler) CrawlDomain(baseURL string, headers map[string]string) (*Crawl
 		ScanTime:   time.Since(startTime),
 	}
 	
-	log.Printf("Concurrent crawl completed: %d URLs discovered, %d pages visited in %v", 
-		len(urlList), len(c.visited), time.Since(startTime))
+	if !c.quiet {
+		log.Printf("Concurrent crawl completed: %d URLs discovered, %d pages visited in %v", 
+			len(urlList), len(c.visited), time.Since(startTime))
+	}
 	
 	return result, nil
 }
@@ -174,7 +178,7 @@ func (c *Crawler) crawlPage(pageURL string) {
 	
 	// Log progress every 50 pages
 	if totalVisited%50 == 0 {
-		log.Printf("Crawled %d pages, currently processing: %s", totalVisited, pageURL)
+		if !c.quiet { log.Printf("Crawled %d pages, currently processing: %s", totalVisited, pageURL) }
 	}
 	
 	// Fetch page content
@@ -182,7 +186,7 @@ func (c *Crawler) crawlPage(pageURL string) {
 	if err != nil {
 		// Only skip 404s, but include 400s and 500s as they might be valid endpoints
 		if !strings.Contains(err.Error(), "404") {
-			log.Printf("Error fetching page %s: %v", pageURL, err)
+			if !c.quiet { log.Printf("Error fetching page %s: %v", pageURL, err) }
 		}
 		// Still process the URL even if there's an error (except 404)
 		if strings.Contains(err.Error(), "404") {

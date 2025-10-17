@@ -15,6 +15,18 @@ import (
 
 var totalRequests int
 var logger = slog.New(slog.NewTextHandler(os.Stdout, nil))
+var quiet bool
+
+// SetQuiet controls verbosity of paramsmapper internal logging
+func SetQuiet(q bool) {
+    quiet = q
+    if quiet {
+        // Replace logger with a handler that discards all logs
+        logger = slog.New(slog.NewTextHandler(io.Discard, nil))
+    } else {
+        logger = slog.New(slog.NewTextHandler(os.Stdout, nil))
+    }
+}
 var ignoreCertErrors bool
 var numBaselines = 3
 
