@@ -36,6 +36,7 @@ func main() {
 		quiet       = flag.Bool("quiet", false, "Quiet output (only key progress and findings)")
 		maxParams   = flag.Int("max-params", 0, "Maximum number of parameters to test (0 = all)")
 		maxURLs     = flag.Int("max-urls", 1400, "Maximum URLs per domain before skipping parameter fuzzing")
+		maxValidParams = flag.Int("max-valid-params", 5, "Maximum valid parameters per URL before considering it a false positive")
 	)
 	flag.Parse()
 
@@ -251,21 +252,41 @@ func main() {
 		allResults = append(allResults, results)
 	}
 
-	// Count total parameters discovered
+	// Count total parameters discovered and check for false positives
 	totalParams := 0
 	totalFormParams := 0
 	totalRequests := 0
+	maxValidParamsPerURL := *maxValidParams // Threshold for detecting false positives
 	
+	// Check for false positives (too many parameters found per URL)
+	urlsWithTooManyParams := make(map[string]bool)
 	for _, result := range allResults {
-		totalParams += len(result.Params)
+		paramCount := len(result.Params)
+		if paramCount > maxValidParamsPerURL {
+			urlsWithTooManyParams[result.Request.URL] = true
+			if !*quiet { log.Printf("Suspicious: URL %s found %d parameters (likely false positive), skipping parameter fuzzing for this domain", result.Request.URL, paramCount) }
+		}
+		totalParams += paramCount
 		totalFormParams += len(result.FormParams)
 		totalRequests += result.TotalRequests
 	}
 
 	if !*quiet { log.Printf("Parameter fuzzing complete: %d parameters discovered across all URLs", totalParams) }
-
-	// Generate hidden URLs - only apply parameters to the specific URLs where they were discovered
+	
+	// Filter out results from URLs with too many parameters (false positives)
+	var filteredResults []paramsmapper.Results
 	for _, result := range allResults {
+		if !urlsWithTooManyParams[result.Request.URL] {
+			filteredResults = append(filteredResults, result)
+		}
+	}
+	
+	if len(urlsWithTooManyParams) > 0 {
+		if !*quiet { log.Printf("Filtered out %d URLs with suspicious parameter counts (likely false positives)", len(urlsWithTooManyParams)) }
+	}
+
+	// Generate hidden URLs - only apply parameters to the specific URLs where they were discovered (excluding false positives)
+	for _, result := range filteredResults {
 		// Only process if parameters were discovered for this URL
 		if len(result.Params) > 0 {
 			if !*quiet { log.Printf("Applying %d discovered parameters to URL: %s", len(result.Params), result.Request.URL) }
