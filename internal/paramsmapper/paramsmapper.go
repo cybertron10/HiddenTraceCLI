@@ -2,6 +2,7 @@ package paramsmapper
 
 import (
 	"bytes"
+	"context"
 	"encoding/json"
 	"fmt"
 	"io"
@@ -57,7 +58,14 @@ type ProgressInfo struct {
 	Discovered  int    `json:"discovered"`
 }
 
-type ProgressCallback func(ProgressInfo)
+type ProgressCallback func(ProgressInfo) bool // Return true to continue, false to abort
+
+// Helper function to call callback without checking return value (for final calls)
+func callCallback(callback ProgressCallback, info ProgressInfo) {
+	if callback != nil {
+		callback(info)
+	}
+}
 
 type ResponseData struct {
 	Body        []byte
@@ -78,47 +86,68 @@ func DiscoverParams(request Request, params []string, chunkSize int) Results {
 
 // DiscoverParamsWithProgress discovers valid parameters with progress tracking
 func DiscoverParamsWithProgress(request Request, params []string, chunkSize int, callback ProgressCallback) Results {
+	return DiscoverParamsWithProgressAndContext(context.Background(), request, params, chunkSize, callback)
+}
+
+// DiscoverParamsWithProgressAndContext discovers valid parameters with progress tracking and context support
+func DiscoverParamsWithProgressAndContext(ctx context.Context, request Request, params []string, chunkSize int, callback ProgressCallback) Results {
 	totalParams := len(params)
 	
 	// Progress: 0-10% - Initial setup
 	if callback != nil {
-		callback(ProgressInfo{
+		if !callback(ProgressInfo{
 			Current:    0,
 			Total:      totalParams,
 			Percentage: 0,
 			Stage:      "initialization",
 			Message:    "Initializing parameter discovery...",
 			Discovered: 0,
-		})
+		}) {
+			return Results{
+				Params:        []string{},
+				FormParams:    []string{},
+				Aborted:       true,
+				AbortReason:   "Early termination requested",
+				TotalRequests: totalRequests,
+				Request:       request,
+			}
+		}
 	}
 
 	initialResponses := makeInitialRequests(request)
 
 	// Progress: 10-15% - Baseline check
 	if callback != nil {
-		callback(ProgressInfo{
+		if !callback(ProgressInfo{
 			Current:    totalParams / 10,
 			Total:      totalParams,
 			Percentage: 10,
 			Stage:      "baseline",
 			Message:    "Checking baseline responses...",
 			Discovered: 0,
-		})
+		}) {
+			return Results{
+				Params:        []string{},
+				FormParams:    []string{},
+				Aborted:       true,
+				AbortReason:   "Early termination requested",
+				TotalRequests: totalRequests,
+				Request:       request,
+			}
+		}
 	}
 
 	// Check if baseline responses are consistent
 	if !initialResponses.AreConsistent {
 		logger.Warn("Baseline responses differ significantly. The page appears to be too dynamic. Scanning will be skipped.")
-		if callback != nil {
-			callback(ProgressInfo{
-				Current:    totalParams,
-				Total:      totalParams,
-				Percentage: 100,
-				Stage:      "aborted",
-				Message:    "Scanning aborted - responses too dynamic",
-				Discovered: 0,
-			})
-		}
+		callCallback(callback, ProgressInfo{
+			Current:    totalParams,
+			Total:      totalParams,
+			Percentage: 100,
+			Stage:      "aborted",
+			Message:    "Scanning aborted - responses too dynamic",
+			Discovered: 0,
+		})
 		return Results{
 			Params:        []string{},
 			FormParams:    []string{},
@@ -131,14 +160,23 @@ func DiscoverParamsWithProgress(request Request, params []string, chunkSize int,
 
 	// Progress: 15-20% - Form extraction
 	if callback != nil {
-		callback(ProgressInfo{
+		if !callback(ProgressInfo{
 			Current:    totalParams / 5,
 			Total:      totalParams,
 			Percentage: 15,
 			Stage:      "forms",
 			Message:    "Extracting form parameters...",
 			Discovered: 0,
-		})
+		}) {
+			return Results{
+				Params:        []string{},
+				FormParams:    []string{},
+				Aborted:       true,
+				AbortReason:   "Early termination requested",
+				TotalRequests: totalRequests,
+				Request:       request,
+			}
+		}
 	}
 
 	formsParams := extractFormParams(initialResponses.Responses[0].Body)
@@ -147,19 +185,17 @@ func DiscoverParamsWithProgress(request Request, params []string, chunkSize int,
 	params = append(params, formsParams...)
 	
 	// Progress: 20-95% - Parameter discovery
-	validParams := discoverValidParamsWithProgress(request, params, initialResponses, chunkSize, callback)
+	validParams := discoverValidParamsWithProgressAndContext(ctx, request, params, initialResponses, chunkSize, callback)
 	
 	// Progress: 95-100% - Finalization
-	if callback != nil {
-		callback(ProgressInfo{
-			Current:    totalParams,
-			Total:      totalParams,
-			Percentage: 100,
-			Stage:      "completed",
-			Message:    "Parameter discovery completed",
-			Discovered: len(validParams),
-		})
-	}
+	callCallback(callback, ProgressInfo{
+		Current:    totalParams,
+		Total:      totalParams,
+		Percentage: 100,
+		Stage:      "completed",
+		Message:    "Parameter discovery completed",
+		Discovered: len(validParams),
+	})
 
 	return Results{
 		Params:        validParams,
@@ -174,33 +210,41 @@ func discoverValidParams(request Request, params []string, initialResponses Init
 }
 
 func discoverValidParamsWithProgress(request Request, params []string, initialResponses InitialResponses, chunkSize int, callback ProgressCallback) []string {
+	return discoverValidParamsWithProgressAndContext(context.Background(), request, params, initialResponses, chunkSize, callback)
+}
+
+func discoverValidParamsWithProgressAndContext(ctx context.Context, request Request, params []string, initialResponses InitialResponses, chunkSize int, callback ProgressCallback) []string {
 	totalParams := len(params)
 	parts := chunkParams(params, chunkSize)
 	
 	// Progress: 20-40% - Chunk filtering
 	if callback != nil {
-		callback(ProgressInfo{
+		if !callback(ProgressInfo{
 			Current:    totalParams / 4,
 			Total:      totalParams,
 			Percentage: 20,
 			Stage:      "chunking",
 			Message:    "Testing parameter chunks...",
 			Discovered: 0,
-		})
+		}) {
+			return []string{} // Early termination
+		}
 	}
 	
 	validParts := filterParts(request, parts, initialResponses)
 
 	// Progress: 40-60% - Valid parts found
 	if callback != nil {
-		callback(ProgressInfo{
+		if !callback(ProgressInfo{
 			Current:    totalParams / 2,
 			Total:      totalParams,
 			Percentage: 40,
 			Stage:      "filtering",
 			Message:    fmt.Sprintf("Found %d valid parameter chunks", len(validParts)),
 			Discovered: 0,
-		})
+		}) {
+			return []string{} // Early termination
+		}
 	}
 
 	paramSet := make(map[string]bool)
@@ -208,12 +252,31 @@ func discoverValidParamsWithProgress(request Request, params []string, initialRe
 	var wg sync.WaitGroup
 	var mu sync.Mutex
 	var processedCount int
+	var shouldStop bool
 
 	for i, part := range validParts {
+		// Check for early termination before starting new goroutine
+		select {
+		case <-ctx.Done():
+			return validParams
+		default:
+		}
+		
+		if shouldStop {
+			break
+		}
+		
 		wg.Add(1)
 		go func(part []string, partIndex int) {
 			defer wg.Done()
 			for _, param := range recursiveFilter(request, part, initialResponses) {
+				// Check for early termination in the loop
+				select {
+				case <-ctx.Done():
+					return
+				default:
+				}
+				
 				mu.Lock()
 				if !paramSet[param] {
 					paramSet[param] = true
@@ -226,14 +289,18 @@ func discoverValidParamsWithProgress(request Request, params []string, initialRe
 				if processedCount%10 == 0 || processedCount == totalParams {
 					progress := 40 + int(float64(processedCount)/float64(totalParams)*50) // 40-90%
 					if callback != nil {
-						callback(ProgressInfo{
+						if !callback(ProgressInfo{
 							Current:    processedCount,
 							Total:      totalParams,
 							Percentage: progress,
 							Stage:      "discovery",
 							Message:    fmt.Sprintf("Testing parameters... (%d/%d)", processedCount, totalParams),
 							Discovered: len(validParams),
-						})
+						}) {
+							shouldStop = true
+							mu.Unlock()
+							return
+						}
 					}
 				}
 				mu.Unlock()
