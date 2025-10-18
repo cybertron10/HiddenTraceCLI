@@ -134,9 +134,9 @@ func main() {
 	
 	if !*quiet { log.Printf("Crawl complete: %d URLs discovered across %d targets", len(crawl.URLs), len(targetURLs)) }
 
-	// Check if any individual domain has too many URLs and skip parameter fuzzing
+	// Check if any individual domain has too many URLs and skip parameter fuzzing for those domains
 	maxURLsPerDomain := *maxURLs
-	domainsToSkip := make(map[string]bool)
+	domainsToSkipFuzzing := make(map[string]bool)
 	
 	for _, targetURL := range targetURLs {
 		parsedURL, err := url.Parse(targetURL)
@@ -158,27 +158,9 @@ func main() {
 		}
 		
 		if domainURLCount > maxURLsPerDomain {
-			domainsToSkip[domain] = true
-			if !*quiet { log.Printf("Skipping domain %s: %d URLs exceeds limit of %d", domain, domainURLCount, maxURLsPerDomain) }
+			domainsToSkipFuzzing[domain] = true
+			if !*quiet { log.Printf("Skipping parameter fuzzing for domain %s: %d URLs exceeds limit of %d", domain, domainURLCount, maxURLsPerDomain) }
 		}
-	}
-	
-	// Filter out URLs from domains that exceed the limit
-	var filteredURLs []string
-	for _, crawledURL := range crawl.URLs {
-		parsedURL, err := url.Parse(crawledURL)
-		if err != nil {
-			continue
-		}
-		if !domainsToSkip[parsedURL.Host] {
-			filteredURLs = append(filteredURLs, crawledURL)
-		}
-	}
-	
-	// Update crawl result with filtered URLs
-	crawl.URLs = filteredURLs
-	if !*quiet && len(domainsToSkip) > 0 { 
-		log.Printf("Filtered out %d URLs from %d domains that exceeded URL limit", len(crawl.URLs)-len(filteredURLs), len(domainsToSkip))
 	}
 
 	// Skip saving crawl results - only XSS vulnerabilities needed
@@ -207,10 +189,22 @@ func main() {
 	// Process all URLs together (fuzz every endpoint for comprehensive coverage)
 	var allResults []paramsmapper.Results
 
-	if !*quiet { log.Printf("Fuzzing %d URLs for hidden parameters...", len(crawl.URLs)) }
+	// Filter URLs for parameter fuzzing (skip domains that exceed URL limit)
+	var urlsForFuzzing []string
+	for _, targetURL := range crawl.URLs {
+		parsedURL, err := url.Parse(targetURL)
+		if err != nil {
+			continue
+		}
+		if !domainsToSkipFuzzing[parsedURL.Host] {
+			urlsForFuzzing = append(urlsForFuzzing, targetURL)
+		}
+	}
 	
-	for i, targetURL := range crawl.URLs {
-		if !*quiet { log.Printf("Processing URL %d/%d: %s", i+1, len(crawl.URLs), targetURL) }
+	if !*quiet { log.Printf("Fuzzing %d URLs for hidden parameters (skipped %d URLs from domains exceeding limit)...", len(urlsForFuzzing), len(crawl.URLs)-len(urlsForFuzzing)) }
+	
+	for i, targetURL := range urlsForFuzzing {
+		if !*quiet { log.Printf("Processing URL %d/%d: %s", i+1, len(urlsForFuzzing), targetURL) }
 		
 		request := paramsmapper.Request{
 			URL:     targetURL,
@@ -229,7 +223,7 @@ func main() {
 				if !*quiet {
 					// Log progress more frequently to track activity
 					if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
-						log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(crawl.URLs), progress.Message, progress.Discovered)
+						log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urlsForFuzzing), progress.Message, progress.Discovered)
 					}
 				}
 			})
@@ -242,7 +236,7 @@ func main() {
 			// Parameter fuzzing completed successfully
 		case <-ctx.Done():
 			// Timeout occurred
-			if !*quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(crawl.URLs)) }
+			if !*quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(urlsForFuzzing)) }
 			results = paramsmapper.Results{
 				Params:        []string{},
 				FormParams:    []string{},
