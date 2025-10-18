@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"log"
 	"net/url"
 	"os"
@@ -32,6 +33,7 @@ func main() {
 		outputDir   = flag.String("output", "scan_results", "Output file (.txt) or directory for results")
 		wordlist    = flag.String("wordlist", "wordlist.txt", "Path to parameter wordlist file")
 		quiet       = flag.Bool("quiet", false, "Quiet output (only key progress and findings)")
+		maxParams   = flag.Int("max-params", 0, "Maximum number of parameters to test (0 = all)")
 	)
 	flag.Parse()
 
@@ -146,6 +148,10 @@ func main() {
 
 	// Load wordlist
 	wordlistParams := paramsmapper.LoadWordlist(*wordlist)
+	if *maxParams > 0 && len(wordlistParams) > *maxParams {
+		wordlistParams = wordlistParams[:*maxParams]
+		if !*quiet { log.Printf("Limited to first %d parameters from wordlist", *maxParams) }
+	}
 	if !*quiet { log.Printf("Loaded %d parameters from wordlist", len(wordlistParams)) }
 	paramsmapper.SetQuiet(*quiet)
 
@@ -160,17 +166,43 @@ func main() {
 		request := paramsmapper.Request{
 			URL:     targetURL,
 			Method:  "GET",
-			Timeout: 10,
+			Timeout: 5, // Reduced timeout for faster requests
 		}
 		
-		results := paramsmapper.DiscoverParamsWithProgress(request, wordlistParams, 500, func(progress paramsmapper.ProgressInfo) {
-			if !*quiet {
-				// Only log significant progress updates
-				if progress.Percentage%25 == 0 {
-					log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(crawl.URLs), progress.Message, progress.Discovered)
+		// Add timeout context for parameter fuzzing
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+		defer cancel()
+		
+		// Use a channel to handle timeout
+		resultsChan := make(chan paramsmapper.Results, 1)
+		go func() {
+			results := paramsmapper.DiscoverParamsWithProgress(request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) {
+				if !*quiet {
+					// Log progress more frequently to track activity
+					if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
+						log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(crawl.URLs), progress.Message, progress.Discovered)
+					}
 				}
+			})
+			resultsChan <- results
+		}()
+		
+		var results paramsmapper.Results
+		select {
+		case results = <-resultsChan:
+			// Parameter fuzzing completed successfully
+		case <-ctx.Done():
+			// Timeout occurred
+			if !*quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(crawl.URLs)) }
+			results = paramsmapper.Results{
+				Params:        []string{},
+				FormParams:    []string{},
+				Aborted:       true,
+				AbortReason:   "Timeout after 5 minutes",
+				TotalRequests: 0,
+				Request:       request,
 			}
-		})
+		}
 		
 		// Store results with URL context
 		allResults = append(allResults, results)
@@ -217,8 +249,20 @@ func main() {
 
 	// Skip saving URLs - only XSS vulnerabilities needed
 
-	// 4) XSS Scanning
-	if !*quiet { log.Println("Phase 4: XSS scanning...") }
+	// 4) Reflection Filtering
+	if !*quiet { log.Println("Phase 4: Reflection filtering...") }
+	reflectingURLs := filterReflectingURLs(allURLs, *quiet)
+	if !*quiet { log.Printf("Reflection filtering complete: %d/%d URLs have reflecting parameters", len(reflectingURLs), len(allURLs)) }
+	
+	// If no URLs have reflecting parameters, skip XSS scanning entirely
+	if len(reflectingURLs) == 0 {
+		if !*quiet { log.Println("No URLs with reflecting parameters found. Skipping XSS scanning.") }
+		fmt.Println("xss scan completed")
+		return
+	}
+
+	// 5) XSS Scanning
+	if !*quiet { log.Println("Phase 5: XSS scanning...") }
 	scanCfg := &scanner.Config{
 		Quiet:     *quiet,
 		Headless:  *headless,
@@ -234,9 +278,9 @@ func main() {
 	completed := 0
 	var mu sync.Mutex
 
-	if !*quiet { log.Printf("Starting XSS scan of %d URLs with concurrency %d", len(allURLs), *concurrency) }
+	if !*quiet { log.Printf("Starting XSS scan of %d URLs with concurrency %d", len(reflectingURLs), *concurrency) }
 
-	for i, u := range allURLs {
+	for i, u := range reflectingURLs {
 		u := u
 		urlIndex := i + 1
 		sem <- struct{}{}
@@ -246,12 +290,12 @@ func main() {
 				<-sem
 				mu.Lock()
 				completed++
-			if !*quiet { log.Printf("XSS scan progress: %d/%d URLs completed", completed, len(allURLs)) }
+				if !*quiet { log.Printf("XSS scan progress: %d/%d URLs completed", completed, len(reflectingURLs)) }
 				mu.Unlock()
 				done <- struct{}{} 
 			}()
 			
-			if !*quiet { log.Printf("Scanning URL %d/%d: %s", urlIndex, len(allURLs), u) }
+			if !*quiet { log.Printf("Scanning URL %d/%d: %s", urlIndex, len(reflectingURLs), u) }
 			cfg := *scanCfg
 			cfg.URL = u
 			s := scanner.NewScanner(&cfg)
@@ -290,6 +334,73 @@ func main() {
 
 	// Always print a final completion message
 	fmt.Println("xss scan completed")
+}
+
+// filterReflectingURLs tests all URLs for parameter reflection and returns only those with reflecting parameters
+func filterReflectingURLs(urls []string, quiet bool) []string {
+	if !quiet { log.Printf("Testing %d URLs for parameter reflection...", len(urls)) }
+	
+	var reflectingURLs []string
+	client := &http.Client{Timeout: 5 * time.Second} // Reduced timeout
+	testValue := "surajishere"
+	
+	for i, urlStr := range urls {
+		if !quiet && (i+1)%50 == 0 { // More frequent progress updates
+			log.Printf("Reflection test progress: %d/%d URLs tested", i+1, len(urls))
+		}
+		
+		parsedURL, err := url.Parse(urlStr)
+		if err != nil {
+			continue
+		}
+		
+		// Get existing query parameters
+		query := parsedURL.Query()
+		if len(query) == 0 {
+			// No parameters to test, skip this URL
+			if !quiet { log.Printf("Skipping URL with no parameters: %s", urlStr) }
+			continue
+		}
+		
+		// Test each parameter for reflection
+		hasReflectingParam := false
+		for paramName := range query {
+			// Create test URL with the test value
+			testURL := *parsedURL
+			testQuery := testURL.Query()
+			testQuery.Set(paramName, testValue)
+			testURL.RawQuery = testQuery.Encode()
+			
+			// Make request with timeout
+			resp, err := client.Get(testURL.String())
+			if err != nil {
+				if !quiet { log.Printf("Request failed for %s: %v", testURL.String(), err) }
+				continue
+			}
+			
+			// Read response body
+			body, err := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if err != nil {
+				continue
+			}
+			
+			// Check if test value reflects in response
+			if strings.Contains(strings.ToLower(string(body)), strings.ToLower(testValue)) {
+				hasReflectingParam = true
+				if !quiet { log.Printf("Parameter %s reflects in %s", paramName, urlStr) }
+				break // Found at least one reflecting parameter, no need to test others
+			}
+		}
+		
+		if hasReflectingParam {
+			reflectingURLs = append(reflectingURLs, urlStr)
+		} else {
+			if !quiet { log.Printf("No reflecting parameters found in: %s", urlStr) }
+		}
+	}
+	
+	return reflectingURLs
 }
 
 // Helper functions
