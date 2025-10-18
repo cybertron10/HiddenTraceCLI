@@ -87,7 +87,7 @@ func main() {
 
 		quiet       = flag.Bool("quiet", false, "Quiet output (only key progress and findings)")
 		maxParams   = flag.Int("max-params", 0, "Maximum number of parameters to test (0 = all)")
-		maxURLs     = flag.Int("max-urls", 1400, "Maximum URLs per domain before skipping parameter fuzzing")
+		maxURLs     = flag.Int("max-urls", 200, "Maximum URLs per domain before skipping parameter fuzzing")
 		maxValidParams = flag.Int("max-valid-params", 10, "Maximum valid parameters per URL before considering it a false positive")
 		notify      = flag.Bool("notify", false, "Send real-time notifications for XSS vulnerabilities found")
 	)
