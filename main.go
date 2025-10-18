@@ -311,8 +311,11 @@ func main() {
 			if result != nil && len(result.Vulnerabilities) > 0 {
 				mu.Lock()
 				vulnerabilities = append(vulnerabilities, result.Vulnerabilities...)
-				// Always show per-URL finding lines
-				log.Printf("Found %d XSS vulnerabilities in %s", len(result.Vulnerabilities), u)
+				// Always show per-URL finding lines with exploit URLs and payloads
+				for _, vuln := range result.Vulnerabilities {
+					payloads := strings.Join(vuln.WorkingPayloads, ", ")
+					log.Printf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
+				}
 				mu.Unlock()
 			}
 		}()
