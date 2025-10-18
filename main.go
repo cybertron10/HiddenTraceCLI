@@ -219,6 +219,8 @@ func main() {
 		
 		// Use a channel to handle timeout
 		resultsChan := make(chan paramsmapper.Results, 1)
+		earlyStop := false
+		
 		go func() {
 			results := paramsmapper.DiscoverParamsWithProgress(request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) {
 				if !*quiet {
@@ -227,14 +229,33 @@ func main() {
 						log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urlsForFuzzing), progress.Message, progress.Discovered)
 					}
 				}
+				
+				// Early termination if too many parameters discovered (likely false positive)
+				if progress.Discovered > *maxValidParams {
+					if !*quiet { log.Printf("URL %d/%d - Too many parameters discovered (%d), stopping fuzzing (likely false positive)", i+1, len(urlsForFuzzing), progress.Discovered) }
+					earlyStop = true
+					return
+				}
 			})
+			
+			// If early stop was triggered, return empty results
+			if earlyStop {
+				results = paramsmapper.Results{
+					Params:        []string{},
+					FormParams:    []string{},
+					Aborted:       true,
+					AbortReason:   "Too many parameters discovered (false positive)",
+					TotalRequests: 0,
+					Request:       request,
+				}
+			}
 			resultsChan <- results
 		}()
 		
 		var results paramsmapper.Results
 		select {
 		case results = <-resultsChan:
-			// Parameter fuzzing completed successfully
+			// Parameter fuzzing completed successfully or was stopped early
 		case <-ctx.Done():
 			// Timeout occurred
 			if !*quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(urlsForFuzzing)) }
