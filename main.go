@@ -740,55 +740,29 @@ func main() {
 // filterReflectingURLs tests all URLs for parameter reflection and returns only those with reflecting parameters
 func filterReflectingURLs(urls []string, quiet bool) []string {
 	if !quiet { log.Printf("Testing %d URLs for parameter reflection...", len(urls)) }
-	
+
 	var reflectingURLs []string
 	client := &http.Client{Timeout: 5 * time.Second} // Reduced timeout
 	testValue := "surajishere"
-	
+
 	for i, urlStr := range urls {
 		if !quiet && (i+1)%50 == 0 { // More frequent progress updates
 			log.Printf("Reflection test progress: %d/%d URLs tested", i+1, len(urls))
 		}
-		
+
 		parsedURL, err := url.Parse(urlStr)
 		if err != nil {
 			continue
 		}
-		
+
 		// Get existing query parameters
 		query := parsedURL.Query()
 		if len(query) == 0 {
-			// No parameters to test, but check if this URL might accept parameters
-			// Test with a common parameter to see if it reflects
-			testURL := *parsedURL
-			testQuery := testURL.Query()
-			testQuery.Set("test", testValue)
-			testURL.RawQuery = testQuery.Encode()
-			
-			// Make request to test if URL accepts parameters
-			resp, err := client.Get(testURL.String())
-			if err != nil {
-				if !quiet { log.Printf("Skipping URL (request failed): %s", urlStr) }
-				continue
-			}
-			
-			// Read response body
-			body, err := io.ReadAll(resp.Body)
-			resp.Body.Close()
-			if err != nil {
-				continue
-			}
-			
-			// Check if test value reflects in response
-			if strings.Contains(strings.ToLower(string(body)), strings.ToLower(testValue)) {
-				if !quiet { log.Printf("URL accepts parameters and reflects: %s", urlStr) }
-				reflectingURLs = append(reflectingURLs, urlStr)
-			} else {
-				if !quiet { log.Printf("URL doesn't reflect parameters: %s", urlStr) }
-			}
+			// Skip URLs without parameters - they can't reflect parameters
+			if !quiet { log.Printf("Skipping URL without parameters: %s", urlStr) }
 			continue
 		}
-		
+
 		// Test each parameter for reflection
 		hasReflectingParam := false
 		for paramName := range query {
@@ -797,21 +771,21 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 			testQuery := testURL.Query()
 			testQuery.Set(paramName, testValue)
 			testURL.RawQuery = testQuery.Encode()
-			
+
 			// Make request with timeout
 			resp, err := client.Get(testURL.String())
 			if err != nil {
 				if !quiet { log.Printf("Request failed for %s: %v", testURL.String(), err) }
 				continue
 			}
-			
+
 			// Read response body
 			body, err := io.ReadAll(resp.Body)
 			resp.Body.Close()
 			if err != nil {
 				continue
 			}
-			
+
 			// Check if test value reflects in response
 			if strings.Contains(strings.ToLower(string(body)), strings.ToLower(testValue)) {
 				hasReflectingParam = true
@@ -819,14 +793,14 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 				break // Found at least one reflecting parameter, no need to test others
 			}
 		}
-		
+
 		if hasReflectingParam {
 			reflectingURLs = append(reflectingURLs, urlStr)
 		} else {
 			if !quiet { log.Printf("No reflecting parameters found in: %s", urlStr) }
 		}
 	}
-	
+
 	return reflectingURLs
 }
 
