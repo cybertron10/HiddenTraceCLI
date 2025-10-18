@@ -387,22 +387,74 @@ func main() {
 		resultsChan := make(chan paramsmapper.Results, 1)
 		
 		go func() {
-			results := paramsmapper.DiscoverParamsWithProgressAndContext(ctx, request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) bool {
-				if !*quiet {
-					// Log progress more frequently to track activity
-					if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
-						log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urlsForFuzzing), progress.Message, progress.Discovered)
+			// Create a context that can be cancelled for early termination
+			paramCtx, paramCancel := context.WithCancel(ctx)
+			defer paramCancel()
+			
+			// Channel to signal early termination
+			earlyTermChan := make(chan bool, 1)
+			
+			// Start parameter discovery in a separate goroutine
+			var results paramsmapper.Results
+			done := make(chan bool, 1)
+			
+			go func() {
+				results = paramsmapper.DiscoverParamsWithProgressAndContext(paramCtx, request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) bool {
+					if !*quiet {
+						// Log progress more frequently to track activity
+						if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
+							log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urlsForFuzzing), progress.Message, progress.Discovered)
+						}
 					}
-				}
+					
+					// Early termination if too many parameters discovered (likely false positive)
+					if progress.Discovered > *maxValidParams {
+						if !*quiet { log.Printf("URL %d/%d - Too many parameters discovered (%d), stopping fuzzing (likely false positive)", i+1, len(urlsForFuzzing), progress.Discovered) }
+						
+						// Signal early termination
+						select {
+						case earlyTermChan <- true:
+						default:
+						}
+						
+						return false // Return false to abort
+					}
+					
+					return true // Continue processing
+				})
+				done <- true
+			}()
+			
+			// Wait for either completion or early termination
+			select {
+			case <-done:
+				// Normal completion
+			case <-earlyTermChan:
+				// Early termination requested - cancel context and wait a bit for cleanup
+				paramCancel()
+				time.Sleep(100 * time.Millisecond) // Give it time to cleanup
 				
-				// Early termination if too many parameters discovered (likely false positive)
-				if progress.Discovered > *maxValidParams {
-					if !*quiet { log.Printf("URL %d/%d - Too many parameters discovered (%d), stopping fuzzing (likely false positive)", i+1, len(urlsForFuzzing), progress.Discovered) }
-					return false // Return false to abort
+				// Return empty results for early termination
+				results = paramsmapper.Results{
+					Params:        []string{},
+					FormParams:    []string{},
+					Aborted:       true,
+					AbortReason:   fmt.Sprintf("Too many parameters discovered (false positive) - stopped at %d", *maxValidParams),
+					TotalRequests: 0,
+					Request:       request,
 				}
-				
-				return true // Continue processing
-			})
+			case <-ctx.Done():
+				// Timeout occurred
+				paramCancel()
+				results = paramsmapper.Results{
+					Params:        []string{},
+					FormParams:    []string{},
+					Aborted:       true,
+					AbortReason:   "Timeout after 5 minutes",
+					TotalRequests: 0,
+					Request:       request,
+				}
+			}
 			
 			resultsChan <- results
 		}()

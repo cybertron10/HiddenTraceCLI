@@ -269,12 +269,17 @@ func discoverValidParamsWithProgressAndContext(ctx context.Context, request Requ
 		wg.Add(1)
 		go func(part []string, partIndex int) {
 			defer wg.Done()
-			for _, param := range recursiveFilter(request, part, initialResponses) {
+			for _, param := range recursiveFilterWithContext(ctx, request, part, initialResponses) {
 				// Check for early termination in the loop
 				select {
 				case <-ctx.Done():
 					return
 				default:
+				}
+				
+				// Check if we should stop due to callback
+				if shouldStop {
+					return
 				}
 				
 				mu.Lock()
@@ -336,6 +341,17 @@ func filterParts(request Request, parts [][]string, initialResponses InitialResp
 }
 
 func recursiveFilter(request Request, params []string, initialResponses InitialResponses) []string {
+	return recursiveFilterWithContext(context.Background(), request, params, initialResponses)
+}
+
+func recursiveFilterWithContext(ctx context.Context, request Request, params []string, initialResponses InitialResponses) []string {
+	// Check for context cancellation
+	select {
+	case <-ctx.Done():
+		return []string{}
+	default:
+	}
+	
 	if len(params) == 1 {
 		return params
 	}
@@ -351,10 +367,10 @@ func recursiveFilter(request Request, params []string, initialResponses InitialR
 
 	var validParams []string
 	if responseChanged(initialResponses.Responses, leftResponse, initialResponses.SameBody) {
-		validParams = append(validParams, recursiveFilter(request, left, initialResponses)...)
+		validParams = append(validParams, recursiveFilterWithContext(ctx, request, left, initialResponses)...)
 	}
 	if responseChanged(initialResponses.Responses, rightResponse, initialResponses.SameBody) {
-		validParams = append(validParams, recursiveFilter(request, right, initialResponses)...)
+		validParams = append(validParams, recursiveFilterWithContext(ctx, request, right, initialResponses)...)
 	}
 	return validParams
 }
