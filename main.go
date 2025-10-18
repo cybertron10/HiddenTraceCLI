@@ -273,9 +273,6 @@ func main() {
 		// 5) XSS scanning for this domain
 		if len(reflectingURLs) == 0 {
 			if !*quiet { log.Printf("No URLs with reflecting parameters found for %s. Skipping XSS scanning.", targetURL) }
-			if *notify {
-				sendNotification("xss scan completed")
-			}
 		} else {
 			if !*quiet { log.Printf("Phase 5: XSS scanning for %s...", targetURL) }
 			domainVulns := processXSSScanning(reflectingURLs, targetURL, *concurrency, *headless, *fast, *ultra, *notify, *quiet)
@@ -293,9 +290,6 @@ func main() {
 
 	// Always print a final completion message
 	fmt.Println("xss scan completed")
-	if *notify {
-		sendNotification("xss scan completed")
-	}
 
 
 
