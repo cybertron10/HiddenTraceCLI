@@ -51,12 +51,11 @@ func sendNotification(message string) {
 		return
 	}
 	
-	// Try to send notification using the notify command
-	cmd := exec.Command("notify")
-	cmd.Stdin = strings.NewReader(message)
-	
 	// Run in background to avoid blocking
 	go func() {
+		// Use echo to pipe the message to notify
+		cmd := exec.Command("sh", "-c", fmt.Sprintf("echo '%s' | notify", message))
+		
 		if err := cmd.Run(); err != nil {
 			// Silently fail if notify command is not available
 			// This prevents errors when notify is not installed
