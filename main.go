@@ -21,6 +21,7 @@ import (
 	"net/url"
 
 	"os"
+	"os/exec"
 
 	"path/filepath"
 
@@ -43,6 +44,25 @@ import (
 )
 
 
+
+// sendNotification sends a notification using the notify command
+func sendNotification(message string) {
+	if message == "" {
+		return
+	}
+	
+	// Try to send notification using the notify command
+	cmd := exec.Command("notify")
+	cmd.Stdin = strings.NewReader(message)
+	
+	// Run in background to avoid blocking
+	go func() {
+		if err := cmd.Run(); err != nil {
+			// Silently fail if notify command is not available
+			// This prevents errors when notify is not installed
+		}
+	}()
+}
 
 func main() {
 
@@ -70,6 +90,7 @@ func main() {
 		maxParams   = flag.Int("max-params", 0, "Maximum number of parameters to test (0 = all)")
 		maxURLs     = flag.Int("max-urls", 1400, "Maximum URLs per domain before skipping parameter fuzzing")
 		maxValidParams = flag.Int("max-valid-params", 10, "Maximum valid parameters per URL before considering it a false positive")
+		notify      = flag.Bool("notify", false, "Send real-time notifications for XSS vulnerabilities found")
 	)
 
 	flag.Parse()
@@ -516,6 +537,9 @@ func main() {
 	if len(reflectingURLs) == 0 {
 		if !*quiet { log.Println("No URLs with reflecting parameters found. Skipping XSS scanning.") }
 		fmt.Println("xss scan completed")
+		if *notify {
+			sendNotification("xss scan completed")
+		}
 		return
 	}
 
@@ -613,6 +637,12 @@ func main() {
 				for _, vuln := range result.Vulnerabilities {
 					payloads := strings.Join(vuln.WorkingPayloads, ", ")
 					log.Printf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
+					
+					// Send notification if enabled
+					if *notify {
+						notificationMsg := fmt.Sprintf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
+						sendNotification(notificationMsg)
+					}
 				}
 				mu.Unlock()
 
@@ -651,6 +681,9 @@ func main() {
 
 	// Always print a final completion message
 	fmt.Println("xss scan completed")
+	if *notify {
+		sendNotification("xss scan completed")
+	}
 }
 
 // filterReflectingURLs tests all URLs for parameter reflection and returns only those with reflecting parameters
