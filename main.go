@@ -8,8 +8,6 @@ import (
 
 	"context"
 
-	"encoding/json"
-
 	"flag"
 
 	"fmt"
@@ -34,8 +32,6 @@ import (
 
 
 	"github.com/cybertron10/HiddenTraceCLI/internal/crawler/crawler"
-
-	"github.com/cybertron10/HiddenTraceCLI/internal/enhancedParamExtractor"
 
 	"github.com/cybertron10/HiddenTraceCLI/internal/paramsmapper"
 
@@ -78,8 +74,6 @@ func main() {
 		fast       = flag.Bool("fast-mode", false, "Fast mode payload set")
 
 		ultra      = flag.Bool("ultra-fast", false, "Ultra fast mode")
-
-		timeout     = flag.Duration("timeout", 10*time.Minute, "Scan timeout")
 
 		outputDir   = flag.String("output", "scan_results", "Output file (.txt) or directory for results")
 
@@ -203,87 +197,28 @@ func main() {
 
 	// 1) Crawl
 
-	if !*quiet { log.Println("Phase 1: Web crawling...") }
+	// Process each domain completely (all phases) before moving to next
+	var allVulnerabilities []scanner.Vulnerability
+	var allHiddenURLs []string
+	var allParams []string
 	
-
-	// Crawl each target URL and combine results
-
-	var allCrawledURLs []string
-
-	var allParameters map[string][]crawler.Parameter = make(map[string][]crawler.Parameter)
-
-	var allEndpoints []string
-
-	totalPages := 0
-
-	var totalScanTime time.Duration
-
-	
-
 	for i, targetURL := range targetURLs {
-
-		// Always show per-target crawl start line
-		log.Printf("Crawling target %d/%d: %s", i+1, len(targetURLs), targetURL)
-
-		// Create a new crawler instance for each URL to avoid channel conflicts
-
+		log.Printf("=== Processing domain %d/%d: %s ===", i+1, len(targetURLs), targetURL)
+		
+		// 1) Web Crawling for this domain
+		if !*quiet { log.Printf("Phase 1: Web crawling %s...", targetURL) }
+		
 		c := crawler.NewCrawler(*quiet)
 		crawl, err := c.CrawlDomain(targetURL, map[string]string{})
-
+		
 		if err != nil {
-
 			if !*quiet { log.Printf("Warning: Failed to crawl %s: %v", targetURL, err) }
 			continue
-
 		}
-
 		
-
-		// Combine results
-
-		allCrawledURLs = append(allCrawledURLs, crawl.URLs...)
-
-		for url, params := range crawl.Parameters {
-
-			allParameters[url] = params
-
-		}
-
-		allEndpoints = append(allEndpoints, crawl.Endpoints...)
-
-		totalPages += crawl.TotalPages
-
-		totalScanTime += crawl.ScanTime
-
-	}
-
-	
-
-	// Create combined crawl result
-
-	crawl := &crawler.CrawlResult{
-
-		URLs:       allCrawledURLs,
-
-		Parameters: allParameters,
-
-		Endpoints:  allEndpoints,
-
-		TotalPages: totalPages,
-
-		ScanTime:   totalScanTime,
-
-	}
-
-	
-
-	if !*quiet { log.Printf("Crawl complete: %d URLs discovered across %d targets", len(crawl.URLs), len(targetURLs)) }
-
-	// Check if any individual domain has too many URLs and skip parameter fuzzing for those domains
-	maxURLsPerDomain := *maxURLs
-	domainsToSkipFuzzing := make(map[string]bool)
-	
-	for _, targetURL := range targetURLs {
+		if !*quiet { log.Printf("Crawl complete for %s: %d URLs discovered", targetURL, len(crawl.URLs)) }
+		
+		// Check if this domain has too many URLs and skip parameter fuzzing
 		parsedURL, err := url.Parse(targetURL)
 		if err != nil {
 			continue
@@ -302,81 +237,92 @@ func main() {
 			}
 		}
 		
-		if domainURLCount > maxURLsPerDomain {
-			domainsToSkipFuzzing[domain] = true
-			if !*quiet { log.Printf("Skipping parameter fuzzing for domain %s: %d URLs exceeds limit of %d", domain, domainURLCount, maxURLsPerDomain) }
+		var skipParameterFuzzing bool
+		if domainURLCount > *maxURLs {
+			skipParameterFuzzing = true
+			if !*quiet { log.Printf("Skipping parameter fuzzing for domain %s: %d URLs exceeds limit of %d", domain, domainURLCount, *maxURLs) }
 		}
-	}
 
-
-	// Skip saving crawl results - only XSS vulnerabilities needed
-
-
-
-	// 2) Parameter extraction
-
-	if !*quiet { log.Println("Phase 2: Parameter extraction...") }
-	allParams := enhancedParamExtractor.ExtractAllParameters(crawl)
-
-	if !*quiet { log.Printf("Parameter extraction complete: %d parameters found", len(allParams)) }
-
-
-	// Skip saving parameters - only XSS vulnerabilities needed
-
-
-
-	// 3) Parameter fuzzing with wordlist
-
-	if !*quiet { log.Println("Phase 3: Parameter fuzzing...") }
-	hiddenURLs := []string{}
-
-	allURLs := crawl.URLs
-
-
-
-	// Load wordlist
-
-	wordlistParams := paramsmapper.LoadWordlist(*wordlist)
-
-	if *maxParams > 0 && len(wordlistParams) > *maxParams {
-		wordlistParams = wordlistParams[:*maxParams]
-		if !*quiet { log.Printf("Limited to first %d parameters from wordlist", *maxParams) }
-	}
-	if !*quiet { log.Printf("Loaded %d parameters from wordlist", len(wordlistParams)) }
-	paramsmapper.SetQuiet(*quiet)
-
-
-	// Process all URLs together (fuzz every endpoint for comprehensive coverage)
-
-	var allResults []paramsmapper.Results
-
-
-
-	// Filter URLs for parameter fuzzing (skip domains that exceed URL limit)
-	var urlsForFuzzing []string
-	for _, targetURL := range crawl.URLs {
-		parsedURL, err := url.Parse(targetURL)
-		if err != nil {
-			continue
+		// 2) Parameter extraction for this domain
+		if !*quiet { log.Printf("Phase 2: Parameter extraction for %s...", targetURL) }
+		var domainParams []string
+		for _, params := range crawl.Parameters {
+			for _, param := range params {
+				domainParams = append(domainParams, param.Name)
+			}
 		}
-		if !domainsToSkipFuzzing[parsedURL.Host] {
-			urlsForFuzzing = append(urlsForFuzzing, targetURL)
-		}
-	}
-	
-	if !*quiet { log.Printf("Fuzzing %d URLs for hidden parameters (skipped %d URLs from domains exceeding limit)...", len(urlsForFuzzing), len(crawl.URLs)-len(urlsForFuzzing)) }
-	
-	for i, targetURL := range urlsForFuzzing {
-		if !*quiet { log.Printf("Processing URL %d/%d: %s", i+1, len(urlsForFuzzing), targetURL) }
+		allParams = append(allParams, domainParams...)
+		if !*quiet { log.Printf("Extracted %d parameters from %s", len(domainParams), targetURL) }
 		
+		// 3) Parameter fuzzing for this domain (if not skipped)
+		var domainHiddenURLs []string
+		if !skipParameterFuzzing {
+			if !*quiet { log.Printf("Phase 3: Parameter fuzzing for %s...", targetURL) }
+			domainHiddenURLs = processParameterFuzzing(crawl.URLs, targetURL, i+1, len(targetURLs), *wordlist, *maxParams, *maxValidParams, *quiet)
+		} else {
+			if !*quiet { log.Printf("Phase 3: Skipping parameter fuzzing for %s (too many URLs)", targetURL) }
+		}
+		allHiddenURLs = append(allHiddenURLs, domainHiddenURLs...)
+		
+		// 4) Reflection filtering for this domain
+		if !*quiet { log.Printf("Phase 4: Reflection filtering for %s...", targetURL) }
+		allURLs := append(crawl.URLs, domainHiddenURLs...)
+		reflectingURLs := filterReflectingURLs(allURLs, *quiet)
+		if !*quiet { log.Printf("Reflection filtering complete for %s: %d/%d URLs have reflecting parameters", targetURL, len(reflectingURLs), len(allURLs)) }
+		
+		// 5) XSS scanning for this domain
+		if len(reflectingURLs) == 0 {
+			if !*quiet { log.Printf("No URLs with reflecting parameters found for %s. Skipping XSS scanning.", targetURL) }
+			if *notify {
+				sendNotification("xss scan completed")
+			}
+		} else {
+			if !*quiet { log.Printf("Phase 5: XSS scanning for %s...", targetURL) }
+			domainVulns := processXSSScanning(reflectingURLs, targetURL, *concurrency, *headless, *fast, *ultra, *notify, *quiet)
+			allVulnerabilities = append(allVulnerabilities, domainVulns...)
+		}
+		
+		log.Printf("=== Completed domain %d/%d: %s ===", i+1, len(targetURLs), targetURL)
+	}
 
+
+	// Final summary
+	if !*quiet { log.Printf("Scan complete! XSS vulnerabilities saved to: %s", outputFile) }
+	if !*quiet { log.Printf("Summary: %d domains processed, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
+		len(targetURLs), len(allParams), len(allHiddenURLs), len(allVulnerabilities)) }
+
+	// Always print a final completion message
+	fmt.Println("xss scan completed")
+	if *notify {
+		sendNotification("xss scan completed")
+	}
+
+
+
+}
+
+// Helper functions for domain processing
+
+func processParameterFuzzing(urls []string, targetURL string, currentDomain, totalDomains int, wordlist string, maxParams int, maxValidParams int, quiet bool) []string {
+	// Load wordlist
+	wordlistParams := paramsmapper.LoadWordlist(wordlist)
+	if maxParams > 0 && len(wordlistParams) > maxParams {
+		wordlistParams = wordlistParams[:maxParams]
+		if !quiet { log.Printf("Limited to first %d parameters from wordlist", maxParams) }
+	}
+	if !quiet { log.Printf("Loaded %d parameters from wordlist", len(wordlistParams)) }
+	paramsmapper.SetQuiet(quiet)
+	
+	var hiddenURLs []string
+	var allResults []paramsmapper.Results
+	
+	for i, urlStr := range urls {
+		if !quiet { log.Printf("Processing URL %d/%d: %s", i+1, len(urls), urlStr) }
+		
 		request := paramsmapper.Request{
-
-			URL:     targetURL,
-
+			URL:     urlStr,
 			Method:  "GET",
-
-			Timeout: 5, // Reduced timeout for faster requests
+			Timeout: 5,
 		}
 		
 		// Add timeout context for parameter fuzzing
@@ -400,16 +346,16 @@ func main() {
 			
 			go func() {
 				results = paramsmapper.DiscoverParamsWithProgressAndContext(paramCtx, request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) bool {
-					if !*quiet {
+					if !quiet {
 						// Log progress more frequently to track activity
 						if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
-							log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urlsForFuzzing), progress.Message, progress.Discovered)
+							log.Printf("URL %d/%d - %s (discovered: %d)", i+1, len(urls), progress.Message, progress.Discovered)
 						}
 					}
 					
 					// Early termination if too many parameters discovered (likely false positive)
-					if progress.Discovered > *maxValidParams {
-						if !*quiet { log.Printf("URL %d/%d - Too many parameters discovered (%d), stopping fuzzing (likely false positive)", i+1, len(urlsForFuzzing), progress.Discovered) }
+					if progress.Discovered > maxValidParams {
+						if !quiet { log.Printf("URL %d/%d - Too many parameters discovered (%d), stopping fuzzing (likely false positive)", i+1, len(urls), progress.Discovered) }
 						
 						// Signal early termination
 						select {
@@ -439,7 +385,7 @@ func main() {
 					Params:        []string{},
 					FormParams:    []string{},
 					Aborted:       true,
-					AbortReason:   fmt.Sprintf("Too many parameters discovered (false positive) - stopped at %d", *maxValidParams),
+					AbortReason:   fmt.Sprintf("Too many parameters discovered (false positive) - stopped at %d", maxValidParams),
 					TotalRequests: 0,
 					Request:       request,
 				}
@@ -465,7 +411,7 @@ func main() {
 			// Parameter fuzzing completed successfully or was stopped early
 		case <-ctx.Done():
 			// Timeout occurred
-			if !*quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(urlsForFuzzing)) }
+			if !quiet { log.Printf("URL %d/%d - Parameter fuzzing timeout after 5 minutes, skipping", i+1, len(urls)) }
 			results = paramsmapper.Results{
 				Params:        []string{},
 				FormParams:    []string{},
@@ -476,265 +422,104 @@ func main() {
 			}
 		}
 		
-
 		// Store results with URL context
-
 		allResults = append(allResults, results)
-
-	}
-
-
-
-	// Count total parameters discovered and check for false positives
-	totalParams := 0
-
-	totalFormParams := 0
-
-	totalRequests := 0
-
-	maxValidParamsPerURL := *maxValidParams // Threshold for detecting false positives
-	
-
-	// Check for false positives (too many parameters found per URL)
-	urlsWithTooManyParams := make(map[string]bool)
-	for _, result := range allResults {
-
-		paramCount := len(result.Params)
-		if paramCount > maxValidParamsPerURL {
-			urlsWithTooManyParams[result.Request.URL] = true
-			if !*quiet { log.Printf("Suspicious: URL %s found %d parameters (likely false positive), skipping parameter fuzzing for this domain", result.Request.URL, paramCount) }
-		}
-		totalParams += paramCount
-		totalFormParams += len(result.FormParams)
-
-		totalRequests += result.TotalRequests
-
-	}
-
-
-
-	if !*quiet { log.Printf("Parameter fuzzing complete: %d parameters discovered across all URLs", totalParams) }
-
-
-	// Filter out results from URLs with too many parameters (false positives)
-	var filteredResults []paramsmapper.Results
-	for _, result := range allResults {
-
-		if !urlsWithTooManyParams[result.Request.URL] {
-			filteredResults = append(filteredResults, result)
-		}
 	}
 	
-	if len(urlsWithTooManyParams) > 0 {
-		if !*quiet { log.Printf("Filtered out %d URLs with suspicious parameter counts (likely false positives)", len(urlsWithTooManyParams)) }
-	}
-
-	// Generate hidden URLs - only apply parameters to the specific URLs where they were discovered (excluding false positives)
-	for _, result := range filteredResults {
-		// Only process if parameters were discovered for this URL
-
+	// Generate hidden URLs from discovered parameters
+	for _, result := range allResults {
+		if result.Aborted {
+			if !quiet { log.Printf("Skipping URL due to fuzzing issues: %s - %s", result.Request.URL, result.AbortReason) }
+			continue
+		}
+		
+		// Combine discovered parameters with the original URL
 		if len(result.Params) > 0 {
-
-			if !*quiet { log.Printf("Applying %d discovered parameters to URL: %s", len(result.Params), result.Request.URL) }
-			for _, param := range result.Params {
-
-				hiddenURL := generateURLWithParam(result.Request.URL, param)
-
-				hiddenURLs = append(hiddenURLs, hiddenURL)
-
+			parsedURL, err := url.Parse(result.Request.URL)
+			if err != nil {
+				continue
 			}
-
+			
+			// Create URLs with discovered parameters
+			query := parsedURL.Query()
+			for _, param := range result.Params {
+				query.Set(param, "test")
+			}
+			parsedURL.RawQuery = query.Encode()
+			hiddenURLs = append(hiddenURLs, parsedURL.String())
 		}
-
 	}
-
-
-
-	if !*quiet { log.Printf("Generated %d hidden URLs with discovered parameters", len(hiddenURLs)) }
-	allURLs = append(allURLs, hiddenURLs...)
-
-
-
-	// Check for and remove duplicates
-
-	originalCount := len(allURLs)
-
-	allURLs = removeDuplicates(allURLs)
-
-	duplicateCount := originalCount - len(allURLs)
-
 	
+	if !quiet { log.Printf("Parameter fuzzing complete for %s: %d hidden URLs generated", targetURL, len(hiddenURLs)) }
+	return hiddenURLs
+}
 
-	if duplicateCount > 0 {
-
-		if !*quiet { log.Printf("Found %d duplicate URLs, removed them. Final unique URLs: %d", duplicateCount, len(allURLs)) }
-	} else {
-
-		if !*quiet { log.Printf("No duplicate URLs found. Total unique URLs: %d", len(allURLs)) }
-	}
-
-
-
-	// Skip saving URLs - only XSS vulnerabilities needed
-
-
-
-	// 4) Reflection Filtering
-	if !*quiet { log.Println("Phase 4: Reflection filtering...") }
-	reflectingURLs := filterReflectingURLs(allURLs, *quiet)
-	if !*quiet { log.Printf("Reflection filtering complete: %d/%d URLs have reflecting parameters", len(reflectingURLs), len(allURLs)) }
-	
-	// If no URLs have reflecting parameters, skip XSS scanning entirely
-	if len(reflectingURLs) == 0 {
-		if !*quiet { log.Println("No URLs with reflecting parameters found. Skipping XSS scanning.") }
-		fmt.Println("xss scan completed")
-		if *notify {
-			sendNotification("xss scan completed")
-		}
-		return
-	}
-
-	// 5) XSS Scanning
-	if !*quiet { log.Println("Phase 5: XSS scanning...") }
-	scanCfg := &scanner.Config{
-
-		Quiet:     *quiet,
-		Headless:  *headless,
-
-		FastMode:  *fast,
-
-		UltraFast: *ultra,
-
-		Timeout:   *timeout,
-
-	}
-
-
-
+func processXSSScanning(urls []string, targetURL string, concurrency int, headless bool, fast bool, ultra bool, notify bool, quiet bool) []scanner.Vulnerability {
 	var vulnerabilities []scanner.Vulnerability
-
-	sem := make(chan struct{}, *concurrency)
-
-	done := make(chan struct{})
-
-	count := 0
-
-	completed := 0
-
+	var wg sync.WaitGroup
 	var mu sync.Mutex
 
-
-
-	if !*quiet { log.Printf("Starting XSS scan of %d URLs with concurrency %d", len(reflectingURLs), *concurrency) }
-
-
-	for i, u := range reflectingURLs {
-		u := u
-
-		urlIndex := i + 1
-
-		sem <- struct{}{}
-
-		count++
-
-		go func() {
-
-			defer func() { 
-
-				<-sem
-
+	// Process URLs in chunks to avoid overwhelming the system
+	chunkSize := concurrency
+	for i := 0; i < len(urls); i += chunkSize {
+		end := i + chunkSize
+		if end > len(urls) {
+			end = len(urls)
+		}
+		
+		chunk := urls[i:end]
+		
+		for _, urlStr := range chunk {
+			wg.Add(1)
+			go func(url string) {
+				defer wg.Done()
+				
+				// Create a new scanner instance for this URL
+				urlConfig := &scanner.Config{
+					URL:       url,
+					Headers:   make(map[string]string),
+					Quiet:     quiet,
+					Headless:  headless,
+					FastMode:  fast,
+					UltraFast: ultra,
+					Timeout:   30 * time.Second,
+				}
+				
+				scannerInstance := scanner.NewScanner(urlConfig)
+				defer scannerInstance.Close()
+				
+				ctx := context.Background()
+				result, err := scannerInstance.Scan(ctx)
+				
 				mu.Lock()
+				if err == nil && result != nil {
+					vulnerabilities = append(vulnerabilities, result.Vulnerabilities...)
 
-				completed++
-
-				if !*quiet { log.Printf("XSS scan progress: %d/%d URLs completed", completed, len(reflectingURLs)) }
-				mu.Unlock()
-
-				done <- struct{}{} 
-
-			}()
-
-			
-
-			if !*quiet { log.Printf("Scanning URL %d/%d: %s", urlIndex, len(reflectingURLs), u) }
-			cfg := *scanCfg
-
-			cfg.URL = u
-
-			s := scanner.NewScanner(&cfg)
-
-			defer s.Close()
-
-			ctx, cancel := context.WithTimeout(context.Background(), cfg.Timeout)
-
-			defer cancel()
-
-			result, err := s.Scan(ctx)
-
-			if err != nil {
-
-				if !*quiet { log.Printf("XSS scan error for %s: %v", u, err) }
-				return
-
-			}
-
-			if result != nil && len(result.Vulnerabilities) > 0 {
-
-				mu.Lock()
-
-				vulnerabilities = append(vulnerabilities, result.Vulnerabilities...)
-
-				// Always show per-URL finding lines with exploit URLs and payloads
-				for _, vuln := range result.Vulnerabilities {
-					payloads := strings.Join(vuln.WorkingPayloads, ", ")
-					log.Printf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
-					
-					// Send notification if enabled
-					if *notify {
-						notificationMsg := fmt.Sprintf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
-						sendNotification(notificationMsg)
+					// Always show per-URL finding lines with exploit URLs and payloads
+					for _, vuln := range result.Vulnerabilities {
+						payloads := strings.Join(vuln.WorkingPayloads, ", ")
+						log.Printf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
+						
+						// Send notification if enabled
+						if notify {
+							notificationMsg := fmt.Sprintf("Found XSS vulnerability in %s - Parameter: %s - Payload: %s", vuln.ExploitURL, vuln.Parameter, payloads)
+							sendNotification(notificationMsg)
+						}
 					}
 				}
 				mu.Unlock()
 
-			}
-
-		}()
-
+			}(urlStr)
+		}
+		
+		wg.Wait()
+		
+		// Progress update
+		if !quiet { log.Printf("XSS scan progress for %s: %d/%d URLs completed", targetURL, end, len(urls)) }
 	}
-
-
-
-	for i := 0; i < count; i++ {
-
-		<-done
-
-	}
-
-
-
-	// Save XSS results
-
-	if err := saveXSSResults(vulnerabilities, outputFile); err != nil {
-
-		if !*quiet { log.Printf("Warning: Failed to save XSS results: %v", err) }
-	}
-
-
-
-	// Skip generating summary - only XSS vulnerabilities needed
-
-
-
-	if !*quiet { log.Printf("Scan complete! XSS vulnerabilities saved to: %s", outputFile) }
-	if !*quiet { log.Printf("Summary: %d URLs crawled, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
-		len(crawl.URLs), len(allParams), len(hiddenURLs), len(vulnerabilities)) }
-
-	// Always print a final completion message
-	fmt.Println("xss scan completed")
-	if *notify {
-		sendNotification("xss scan completed")
-	}
+	
+	if !quiet { log.Printf("XSS scanning complete for %s: %d vulnerabilities found", targetURL, len(vulnerabilities)) }
+	return vulnerabilities
 }
 
 // filterReflectingURLs tests all URLs for parameter reflection and returns only those with reflecting parameters
@@ -804,228 +589,42 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 	return reflectingURLs
 }
 
-
-
-// Helper functions
-
-func saveCrawlResults(crawl *crawler.CrawlResult, filename string) error {
-
-	data, err := json.MarshalIndent(crawl, "", "  ")
-
-	if err != nil {
-
-		return err
-
-	}
-
-	return os.WriteFile(filename, data, 0644)
-
-}
-
-
-
-func saveParameters(params []string, filename string) error {
-
-	content := strings.Join(params, "\n")
-
-	return os.WriteFile(filename, []byte(content), 0644)
-
-}
-
-
-
-func saveURLs(urls []string, filename string) error {
-
-	content := strings.Join(urls, "\n")
-
-	return os.WriteFile(filename, []byte(content), 0644)
-
-}
-
-
-
-func saveXSSResults(vulns []scanner.Vulnerability, filename string) error {
-
-	var lines []string
-
-	for _, vuln := range vulns {
-
-		payloads := strings.Join(vuln.WorkingPayloads, ", ")
-
-		lines = append(lines, fmt.Sprintf("%s - %s - %s", vuln.ExploitURL, vuln.Parameter, payloads))
-
-	}
-
-	content := strings.Join(lines, "\n")
-
-	return os.WriteFile(filename, []byte(content), 0644)
-
-}
-
-
-
-func generateURLWithParam(baseURL, param string) string {
-
-	u, err := url.Parse(baseURL)
-
-	if err != nil {
-
-		return baseURL
-
-	}
-
-	q := u.Query()
-
-	q.Set(param, "test")
-
-	u.RawQuery = q.Encode()
-
-	return u.String()
-
-}
-
-
-
-type ScanSummary struct {
-
-	TargetURL           string        `json:"target_url"`
-
-	ScanDuration        time.Duration `json:"scan_duration"`
-
-	CrawledURLs         int           `json:"crawled_urls"`
-
-	DiscoveredParams    int           `json:"discovered_parameters"`
-
-	HiddenURLs          int           `json:"hidden_urls"`
-
-	XSSVulnerabilities  int           `json:"xss_vulnerabilities"`
-
-	TotalURLs           int           `json:"total_urls"`
-
-	Timestamp           time.Time     `json:"timestamp"`
-
-}
-
-
-
-func generateSummary(crawl *crawler.CrawlResult, params []string, hiddenURLs []string, vulns []scanner.Vulnerability, duration time.Duration, scanTarget string) ScanSummary {
-
-	return ScanSummary{
-
-		TargetURL:          scanTarget,
-
-		ScanDuration:       duration,
-
-		CrawledURLs:        len(crawl.URLs),
-
-		DiscoveredParams:   len(params),
-
-		HiddenURLs:         len(hiddenURLs),
-
-		XSSVulnerabilities: len(vulns),
-
-		TotalURLs:          len(crawl.URLs) + len(hiddenURLs),
-
-		Timestamp:          time.Now(),
-
-	}
-
-}
-
-
-
-func saveSummary(summary ScanSummary, filename string) error {
-
-	data, err := json.MarshalIndent(summary, "", "  ")
-
-	if err != nil {
-
-		return err
-
-	}
-
-	return os.WriteFile(filename, data, 0644)
-
-}
-
-
-
 func removeDuplicates(slice []string) []string {
-
 	keys := make(map[string]bool)
-
 	var result []string
-
 	for _, item := range slice {
-
 		if !keys[item] {
-
 			keys[item] = true
-
 			result = append(result, item)
-
 		}
-
 	}
-
 	return result
-
 }
-
-
 
 func loadURLsFromFile(filename string) ([]string, error) {
-
 	file, err := os.Open(filename)
-
 	if err != nil {
-
 		return nil, err
-
 	}
-
 	defer file.Close()
 
-
-
 	var urls []string
-
 	scanner := bufio.NewScanner(file)
-
 	for scanner.Scan() {
-
 		line := strings.TrimSpace(scanner.Text())
-
 		if line != "" && !strings.HasPrefix(line, "#") {
-
 			// Validate URL format
-
 			if strings.HasPrefix(line, "http://") || strings.HasPrefix(line, "https://") {
-
 				urls = append(urls, line)
-
 			} else {
-
 				log.Printf("Warning: Skipping invalid URL format: %s", line)
-
 			}
-
 		}
-
 	}
-
-
 
 	if err := scanner.Err(); err != nil {
-
 		return nil, err
-
 	}
 
-
-
 	return urls, nil
-
 }
-
-
