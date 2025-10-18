@@ -361,8 +361,34 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 		// Get existing query parameters
 		query := parsedURL.Query()
 		if len(query) == 0 {
-			// No parameters to test, skip this URL
-			if !quiet { log.Printf("Skipping URL with no parameters: %s", urlStr) }
+			// No parameters to test, but check if this URL might accept parameters
+			// Test with a common parameter to see if it reflects
+			testURL := *parsedURL
+			testQuery := testURL.Query()
+			testQuery.Set("test", testValue)
+			testURL.RawQuery = testQuery.Encode()
+			
+			// Make request to test if URL accepts parameters
+			resp, err := client.Get(testURL.String())
+			if err != nil {
+				if !quiet { log.Printf("Skipping URL (request failed): %s", urlStr) }
+				continue
+			}
+			
+			// Read response body
+			body, err := io.ReadAll(resp.Body)
+			resp.Body.Close()
+			if err != nil {
+				continue
+			}
+			
+			// Check if test value reflects in response
+			if strings.Contains(strings.ToLower(string(body)), strings.ToLower(testValue)) {
+				if !quiet { log.Printf("URL accepts parameters and reflects: %s", urlStr) }
+				reflectingURLs = append(reflectingURLs, urlStr)
+			} else {
+				if !quiet { log.Printf("URL doesn't reflect parameters: %s", urlStr) }
+			}
 			continue
 		}
 		
