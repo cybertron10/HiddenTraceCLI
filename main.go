@@ -35,6 +35,7 @@ func main() {
 		wordlist    = flag.String("wordlist", "wordlist.txt", "Path to parameter wordlist file")
 		quiet       = flag.Bool("quiet", false, "Quiet output (only key progress and findings)")
 		maxParams   = flag.Int("max-params", 0, "Maximum number of parameters to test (0 = all)")
+		maxURLs     = flag.Int("max-urls", 1400, "Maximum URLs per domain before skipping parameter fuzzing")
 	)
 	flag.Parse()
 
@@ -132,6 +133,53 @@ func main() {
 	}
 	
 	if !*quiet { log.Printf("Crawl complete: %d URLs discovered across %d targets", len(crawl.URLs), len(targetURLs)) }
+
+	// Check if any individual domain has too many URLs and skip parameter fuzzing
+	maxURLsPerDomain := *maxURLs
+	domainsToSkip := make(map[string]bool)
+	
+	for _, targetURL := range targetURLs {
+		parsedURL, err := url.Parse(targetURL)
+		if err != nil {
+			continue
+		}
+		domain := parsedURL.Host
+		
+		// Count URLs for this domain
+		domainURLCount := 0
+		for _, crawledURL := range crawl.URLs {
+			crawledParsed, err := url.Parse(crawledURL)
+			if err != nil {
+				continue
+			}
+			if crawledParsed.Host == domain {
+				domainURLCount++
+			}
+		}
+		
+		if domainURLCount > maxURLsPerDomain {
+			domainsToSkip[domain] = true
+			if !*quiet { log.Printf("Skipping domain %s: %d URLs exceeds limit of %d", domain, domainURLCount, maxURLsPerDomain) }
+		}
+	}
+	
+	// Filter out URLs from domains that exceed the limit
+	var filteredURLs []string
+	for _, crawledURL := range crawl.URLs {
+		parsedURL, err := url.Parse(crawledURL)
+		if err != nil {
+			continue
+		}
+		if !domainsToSkip[parsedURL.Host] {
+			filteredURLs = append(filteredURLs, crawledURL)
+		}
+	}
+	
+	// Update crawl result with filtered URLs
+	crawl.URLs = filteredURLs
+	if !*quiet && len(domainsToSkip) > 0 { 
+		log.Printf("Filtered out %d URLs from %d domains that exceeded URL limit", len(crawl.URLs)-len(filteredURLs), len(domainsToSkip))
+	}
 
 	// Skip saving crawl results - only XSS vulnerabilities needed
 
