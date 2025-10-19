@@ -288,8 +288,7 @@ func main() {
 	if !*quiet { log.Printf("Summary: %d domains processed, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
 		len(targetURLs), len(allParams), len(allHiddenURLs), len(allVulnerabilities)) }
 
-	// Always print a final completion message
-	fmt.Println("xss scan completed")
+	// Scan completed
 
 
 
