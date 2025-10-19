@@ -326,11 +326,11 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 		request := paramsmapper.Request{
 			URL:     urlStr,
 			Method:  "GET",
-			Timeout: 5,
+			Timeout: 3, // Reduced from 5s to 3s
 		}
 		
 		// Add timeout context for parameter fuzzing
-		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute) // Reduced from 5min to 2min
+		ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute) // Further reduced to 1min
 		defer cancel()
 		
 		// Use a channel to handle timeout
@@ -349,7 +349,7 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 			done := make(chan bool, 1)
 			
 			go func() {
-				results = paramsmapper.DiscoverParamsWithProgressAndContext(paramCtx, request, wordlistParams, 200, func(progress paramsmapper.ProgressInfo) bool {
+				results = paramsmapper.DiscoverParamsWithProgressAndContext(paramCtx, request, wordlistParams, 100, func(progress paramsmapper.ProgressInfo) bool { // Reduced chunk size from 200 to 100
 					if !quiet {
 						// Log progress more frequently to track activity
 						if progress.Percentage%10 == 0 || progress.Stage == "discovery" {
@@ -368,6 +368,15 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 						}
 						
 						return false // Return false to abort
+					}
+					
+					// Additional early termination for slow progress
+					if progress.Stage == "discovery" && progress.Discovered > 0 && progress.Percentage > 50 {
+						// If we're 50% through and only found a few parameters, likely not worth continuing
+						if progress.Discovered < 3 {
+							if !quiet { log.Printf("URL %d/%d - Slow progress, stopping early (found %d params at %d%%)", i+1, len(urls), progress.Discovered, progress.Percentage) }
+							return false
+						}
 					}
 					
 					return true // Continue processing
