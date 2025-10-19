@@ -34,12 +34,14 @@ type Scanner struct {
 // NewScanner creates a new XSS scanner instance
 func NewScanner(config *Config) *Scanner {
 	transport := &http.Transport{
-		TLSHandshakeTimeout: 30 * time.Second,
+		TLSHandshakeTimeout: 10 * time.Second, // Reduced from 30s to 10s
 		DisableCompression:  true, // Disable automatic decompression - we handle it manually
+		MaxIdleConns:        100,  // Reuse connections
+		MaxIdleConnsPerHost: 10,   // Reuse connections per host
 	}
 	
 	client := &http.Client{
-		Timeout:   60 * time.Second,
+		Timeout:   15 * time.Second, // Reduced from 60s to 15s
 		Transport: transport,
 		CheckRedirect: func(req *http.Request, via []*http.Request) error {
 			// Don't follow redirects to external domains

@@ -67,11 +67,11 @@ func main() {
 
 		urlFile     = flag.String("file", "", "File containing list of URLs to scan (one per line)")
 
-		concurrency = flag.Int("concurrency", 10, "Concurrent scans")
+		concurrency = flag.Int("concurrency", 20, "Concurrent scans (increased default for better performance)")
 
 		headless    = flag.Bool("headless", true, "Use headless browser")
 
-		fast       = flag.Bool("fast-mode", false, "Fast mode payload set")
+		fast       = flag.Bool("fast-mode", true, "Fast mode payload set (default: true for better performance)")
 
 		ultra      = flag.Bool("ultra-fast", false, "Ultra fast mode")
 
@@ -119,7 +119,7 @@ func main() {
 	var outputFile string
 
 	
-
+	
 	if strings.HasSuffix(*outputDir, ".txt") {
 
 		// Output is a file path
@@ -159,7 +159,7 @@ func main() {
 	var scanTarget string
 
 	
-
+	
 	if *urlFile != "" {
 
 		// Load URLs from file
@@ -189,7 +189,7 @@ func main() {
 		scanTarget = *targetURL
 
 	}
-
+	
 	
 
 	if !*quiet { log.Printf("Starting HiddenTrace CLI scan for: %s", scanTarget) }
@@ -308,7 +308,7 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 	
 	var hiddenURLs []string
 	var allResults []paramsmapper.Results
-	
+
 	for i, urlStr := range urls {
 		if !quiet { log.Printf("Processing URL %d/%d: %s", i+1, len(urls), urlStr) }
 		
@@ -319,7 +319,7 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 		}
 		
 		// Add timeout context for parameter fuzzing
-		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Minute)
+		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Minute) // Reduced from 5min to 2min
 		defer cancel()
 		
 		// Use a channel to handle timeout
@@ -418,7 +418,7 @@ func processParameterFuzzing(urls []string, targetURL string, currentDomain, tot
 		// Store results with URL context
 		allResults = append(allResults, results)
 	}
-	
+
 	// Generate hidden URLs from discovered parameters
 	for _, result := range allResults {
 		if result.Aborted {
@@ -475,7 +475,7 @@ func processXSSScanning(urls []string, targetURL string, concurrency int, headle
 					Headless:  headless,
 					FastMode:  fast,
 					UltraFast: ultra,
-					Timeout:   30 * time.Second,
+					Timeout:   10 * time.Second, // Reduced from 30s to 10s
 				}
 				
 				scannerInstance := scanner.NewScanner(urlConfig)
@@ -520,7 +520,7 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 	if !quiet { log.Printf("Testing %d URLs for parameter reflection...", len(urls)) }
 
 	var reflectingURLs []string
-	client := &http.Client{Timeout: 5 * time.Second} // Reduced timeout
+	client := &http.Client{Timeout: 3 * time.Second} // Further reduced timeout
 	testValue := "surajishere"
 
 	for i, urlStr := range urls {
@@ -529,7 +529,7 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 		}
 
 		parsedURL, err := url.Parse(urlStr)
-		if err != nil {
+	if err != nil {
 			continue
 		}
 
@@ -560,7 +560,7 @@ func filterReflectingURLs(urls []string, quiet bool) []string {
 			// Read response body
 			body, err := io.ReadAll(resp.Body)
 			resp.Body.Close()
-			if err != nil {
+	if err != nil {
 				continue
 			}
 
