@@ -283,6 +283,17 @@ func main() {
 	}
 
 
+	// Save XSS vulnerabilities to output file
+	if len(allVulnerabilities) > 0 {
+		if err := saveVulnerabilitiesToFile(outputFile, allVulnerabilities); err != nil {
+			log.Printf("Error saving vulnerabilities to file: %v", err)
+		} else {
+			if !*quiet { log.Printf("XSS vulnerabilities saved to: %s", outputFile) }
+		}
+	} else {
+		if !*quiet { log.Printf("No XSS vulnerabilities found") }
+	}
+
 	// Final summary
 	if !*quiet { log.Printf("Scan complete! XSS vulnerabilities saved to: %s", outputFile) }
 	if !*quiet { log.Printf("Summary: %d domains processed, %d parameters found, %d hidden URLs discovered, %d XSS vulnerabilities found", 
@@ -620,4 +631,29 @@ func loadURLsFromFile(filename string) ([]string, error) {
 	}
 
 	return urls, nil
+}
+
+// saveVulnerabilitiesToFile saves XSS vulnerabilities to a file
+func saveVulnerabilitiesToFile(filename string, vulnerabilities []scanner.Vulnerability) error {
+	if len(vulnerabilities) == 0 {
+		return nil
+	}
+
+	var content strings.Builder
+	content.WriteString("# XSS Vulnerabilities Found\n\n")
+	
+	for i, vuln := range vulnerabilities {
+		content.WriteString(fmt.Sprintf("## Vulnerability %d\n", i+1))
+		content.WriteString(fmt.Sprintf("URL: %s\n", vuln.ExploitURL))
+		content.WriteString(fmt.Sprintf("Parameter: %s\n", vuln.Parameter))
+		content.WriteString(fmt.Sprintf("Method: %s\n", vuln.Method))
+		content.WriteString(fmt.Sprintf("Context: %s\n", vuln.Context))
+		content.WriteString(fmt.Sprintf("Confidence: %s\n", vuln.Confidence))
+		content.WriteString(fmt.Sprintf("Working Payloads: %s\n", strings.Join(vuln.WorkingPayloads, ", ")))
+		content.WriteString(fmt.Sprintf("Directly Exploitable: %t\n", vuln.IsDirectlyExploitable))
+		content.WriteString(fmt.Sprintf("Manual Intervention Required: %t\n", vuln.ManualInterventionRequired))
+		content.WriteString("\n")
+	}
+
+	return os.WriteFile(filename, []byte(content.String()), 0644)
 }
